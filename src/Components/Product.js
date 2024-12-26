@@ -53,7 +53,7 @@ const Product = () => {
     }
   }, []);
 
-  console.log("userData===suman", userData?._id);
+  console.log("userData===suman", userData);
 
   const calculateFees = () => {
     let referralFee;
@@ -170,7 +170,7 @@ const Product = () => {
     const rzp1 = new window.Razorpay(options);
     rzp1.open();
   };
-  // userData?._id
+  // "676cdf46a70e449880e336e4"
   // Verify payment and update user search limit
   const verifyPayment = async (paymentId) => {
     try {
@@ -232,9 +232,8 @@ const Product = () => {
 
   const getuser = async () => {
     try {
-      const userId = userData?._id;
       const response = await axios.get(
-        `https://api.proleverageadmin.in/api/users/getparticularuser/${userId}`
+        `https://api.proleverageadmin.in/api/users/getparticularuser/${userData?._id}`
       );
       if (response.status === 200) {
         setalluserdata(response.data.data);
@@ -422,7 +421,7 @@ const Product = () => {
 
         if (!keydata.some((item) => item.asin === updatedData.asin)) {
           addkeyworddata({
-            userId: userData?._id,
+            userId: "676cdf46a70e449880e336e4",
             category: updatedData.category?.name || "",
             sales_volume: updatedData.sales_volume || "",
             product_price: updatedData.product_price || "",

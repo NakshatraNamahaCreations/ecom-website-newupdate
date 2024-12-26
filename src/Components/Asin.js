@@ -22,7 +22,7 @@ const Asin = () => {
   const [orderId, setOrderId] = useState(null);
   const [asindata, setasindata] = useState([]);
   const [isAsinExists, setIsAsinExists] = useState(false);
-  const [alluserdata, setalluserdata] = useState("");
+  const [alluserdata, setalluserdata] = useState([]);
   const [userData, setUserdata] = useState(null);
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const Asin = () => {
     }
   }, []);
 
-  console.log("userData===suman", userData?._id);
+  console.log("userData===suman", "676cdf46a70e449880e336e4");
 
   const loadScript = (src) => {
     return new Promise((resolve) => {
@@ -222,9 +222,8 @@ const Asin = () => {
 
   const getuser = async () => {
     try {
-      const userId = userData?._id;
       const response = await axios.get(
-        `https://api.proleverageadmin.in/api/users/getparticularuser/${userId}`
+        `https://api.proleverageadmin.in/api/users/getparticularuser/${userData?._id}`
       );
       if (response.status === 200) {
         setalluserdata(response.data.data);
@@ -286,7 +285,7 @@ const Asin = () => {
           setData(response.data.data);
 
           await addasindata({
-            userId: userData?._id,
+            userId: "676cdf46a70e449880e336e4",
             category: response.data.data.category?.name || "",
             sales_volume: response.data.data.sales_volume || "",
             product_price: response.data.data.product_price || "",
@@ -298,7 +297,7 @@ const Asin = () => {
             product_photo: response.data.data.product_photo || "",
           });
 
-          // await updateUserSearchCount(userData?._id);
+          // await updateUserSearchCount("676cdf46a70e449880e336e4");
         } else {
           setData([]);
           setError("ASIN code is incorrect or no data available.");

@@ -92,7 +92,7 @@ const Plan = () => {
       //     await axios.get(
       //       `https://api.proleverageadmin.in/api/payment/payment/${response.razorpay_payment_id}`,
       //       {
-      //         params: { userId: userData?._id, planId },
+      //         params: { userId: "676cdf46a70e449880e336e4", planId },
       //       }
       //     );
 

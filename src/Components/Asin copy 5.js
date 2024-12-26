@@ -40,7 +40,7 @@ const CombinedComponent = () => {
     }
   }, []);
 
-  console.log("userData===suman", userData?._id);
+  console.log("userData===suman", "676cdf46a70e449880e336e4");
 
   const loadScript = (src) => {
     return new Promise((resolve) => {
@@ -224,7 +224,7 @@ const CombinedComponent = () => {
         {
           params: {
             asinNo,
-            // userId: userData?._id,
+            // userId: "676cdf46a70e449880e336e4",
             userId: "672f4cab5ec0d6f27393a10e",
           },
         }
@@ -380,7 +380,7 @@ const CombinedComponent = () => {
   const verifyPayment = async (paymentId) => {
     try {
       await axios.get(`https://api.proleverageadmin.in/payment/${paymentId}`, {
-        params: { userId: userData?._id },
+        params: { userId: "676cdf46a70e449880e336e4" },
       });
     } catch (error) {
       console.error("Error verifying payment:", error);

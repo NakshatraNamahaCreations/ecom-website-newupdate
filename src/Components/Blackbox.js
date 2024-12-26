@@ -16,15 +16,18 @@ function Blackbox() {
   const [alluserdata, setalluserdata] = useState("");
   const [categories, setCategories] = useState([]);
 
+  const userdata = localStorage.getItem("user");
+
+  console.log("userdata", userdata);
+
   useEffect(() => {
     getuser();
   }, [alluserdata]);
 
   const getuser = async () => {
     try {
-      const userId = "67596d1d03c4ea704cbeb250";
       const response = await axios.get(
-        `https://api.proleverageadmin.in/api/users/getparticularuser/${userId}`
+        `https://api.proleverageadmin.in//api/users/getparticularuser/${userdata?._id}`
       );
       if (response.status === 200) {
         setalluserdata(response.data.data);
@@ -33,6 +36,8 @@ function Blackbox() {
       console.error("Error fetching keyword data:", error);
     }
   };
+
+  console.log("alluserdata", alluserdata);
 
   const handleCategoryChange = (selectedOptions) => {
     setSelectedCategories(selectedOptions || []);

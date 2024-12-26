@@ -25,7 +25,7 @@ function Blackboxdetails() {
         {
           params: {
             query: filterData.keyword, // Use the keyword from filterData
-            userId: "67596d1d03c4ea704cbeb250", // Pass the user ID
+            userId: "676cdf46a70e449880e336e4", // Pass the user ID
             country: filterData.country, // Pass the country from filterData
           },
         }

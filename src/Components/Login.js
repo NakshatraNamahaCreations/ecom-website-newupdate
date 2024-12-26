@@ -95,7 +95,7 @@ const Login = () => {
       }
     } catch (error) {
       console.error(error);
-      toast.error("Failed to verify. Please complete the steps.");
+      // toast.error("Failed to verify. Please complete the steps.");
       setLoading(false);
       window.location.assign("/signup");
     }

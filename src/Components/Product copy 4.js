@@ -41,7 +41,7 @@ const Product = () => {
     }
   }, []);
 
-  console.log("userData===suman", userData?._id);
+  console.log("userData===suman", "676cdf46a70e449880e336e4");
 
   const loadScript = (src) => {
     return new Promise((resolve) => {

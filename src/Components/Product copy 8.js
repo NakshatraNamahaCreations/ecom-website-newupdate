@@ -49,7 +49,7 @@ const Product = () => {
     }
   }, []);
 
-  console.log("userData===suman", "67596d1d03c4ea704cbeb250");
+  console.log("userData===suman", "676cdf46a70e449880e336e4");
 
   const calculateFees = () => {
     let referralFee;
@@ -117,7 +117,7 @@ const Product = () => {
         {
           amount: 1.0, // Amount in paise (₹1.00)
           currency: "INR",
-          userId: "67596d1d03c4ea704cbeb250", // Pass user ID from localStorage
+          userId: "676cdf46a70e449880e336e4", // Pass user ID from localStorage
         }
       );
       return response.data.orderId;
@@ -175,7 +175,7 @@ const Product = () => {
       await axios.get(
         `https://api.proleverageadmin.in/api/payment/payment/${paymentId}`,
         {
-          params: { userId: "67596d1d03c4ea704cbeb250" },
+          params: { userId: "676cdf46a70e449880e336e4" },
         }
       );
     } catch (error) {
@@ -217,7 +217,7 @@ const Product = () => {
   //     const response = await axios.get(
   //       "https://api.proleverageadmin.in/api/amazon/getitems1",
   //       {
-  //         params: { query, userId: "67596d1d03c4ea704cbeb250", country }, // Pass the user ID
+  //         params: { query, userId: "676cdf46a70e449880e336e4", country }, // Pass the user ID
   //       }
   //     );
   //     setData(response.data.data.products || []);
@@ -255,7 +255,7 @@ const Product = () => {
       const response = await axios.get(
         "https://api.proleverageadmin.in/api/amazon/getitems1",
         {
-          params: { query, userId: "67596d1d03c4ea704cbeb250", country }, // Pass the user ID
+          params: { query, userId: "676cdf46a70e449880e336e4", country }, // Pass the user ID
         }
       );
       setData(response.data.data.products || []);
@@ -424,7 +424,7 @@ const Product = () => {
       await axios.post(
         "https://api.proleverageadmin.in/api/user/update-searchcount",
         {
-          userId: "67596d1d03c4ea704cbeb250",
+          userId: "676cdf46a70e449880e336e4",
         }
       );
       console.log("Search count updated successfully.");
@@ -440,7 +440,7 @@ const Product = () => {
       const response = await axios.get(
         "https://api.proleverageadmin.in/api/amazon/affiliatekeyword1",
         {
-          params: { asin, country, userId: "67596d1d03c4ea704cbeb250" },
+          params: { asin, country, userId: "676cdf46a70e449880e336e4" },
         }
       );
 
@@ -459,7 +459,7 @@ const Product = () => {
         // Add new ASIN data if it doesn't exist in keydata
         if (!keydata.some((item) => item.asin === updatedData.asin)) {
           addkeyworddata({
-            userId: "67596d1d03c4ea704cbeb250",
+            userId: "676cdf46a70e449880e336e4",
             category: updatedData.category?.name || "",
             sales_volume: updatedData.sales_volume || "",
             product_price: updatedData.product_price || "",
@@ -731,7 +731,7 @@ const Product = () => {
                       //   if (!asinExists) {
                       //     // Call the API only if the ASIN does not exist in keydata
                       //     addkeyworddata({
-                      //       userId: "67596d1d03c4ea704cbeb250",
+                      //       userId: "676cdf46a70e449880e336e4",
                       //       category: item.category?.name || "",
                       //       sales_volume: item.sales_volume || "",
                       //       product_price: item.product_price || "",

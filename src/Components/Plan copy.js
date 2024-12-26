@@ -80,7 +80,7 @@ const Plan = () => {
             const verifyResponse = await axios.get(
               `https://api.proleverageadmin.in/api/payment/payment/${response.razorpay_payment_id}`,
               {
-                params: { userId: "67596d1d03c4ea704cbeb250" }, // Pass userId dynamically
+                params: { userId: "676cdf46a70e449880e336e4" }, // Pass userId dynamically
               }
             );
 

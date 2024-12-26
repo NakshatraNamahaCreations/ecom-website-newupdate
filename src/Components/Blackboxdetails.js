@@ -71,7 +71,7 @@ function Blackboxdetails() {
   //       {
   //         params: {
   //           query: categoryLabels,
-  //           userId: "67596d1d03c4ea704cbeb250",
+  //           userId: "676cdf46a70e449880e336e4",
   //           country: filterData.country,
   //           min_price: filterData.price.min,
   //           max_price: filterData.price.max,
@@ -132,7 +132,7 @@ function Blackboxdetails() {
   //       {
   //         params: {
   //           query: categoryLabels,
-  //           userId: "67596d1d03c4ea704cbeb250",
+  //           userId: "676cdf46a70e449880e336e4",
   //           country: filterData.country,
   //           min_price: filterData.price.min,
   //           max_price: filterData.price.max,
@@ -207,7 +207,7 @@ function Blackboxdetails() {
   //       {
   //         params: {
   //           query: categoryLabels,
-  //           userId: "67596d1d03c4ea704cbeb250",
+  //           userId: "676cdf46a70e449880e336e4",
   //           country: filterData.country,
   //           min_price: filterData.price.min,
   //           max_price: filterData.price.max,
@@ -284,7 +284,7 @@ function Blackboxdetails() {
         {
           params: {
             query: categoryLabels,
-            userId: "67596d1d03c4ea704cbeb250",
+            userId: "676cdf46a70e449880e336e4",
             country: filterData.country,
             min_price: filterData.price.min,
             max_price: filterData.price.max,
@@ -414,7 +414,7 @@ function Blackboxdetails() {
           params: {
             asin,
             country: filterData?.country || "IN",
-            userId: "67596d1d03c4ea704cbeb250",
+            userId: "676cdf46a70e449880e336e4",
           },
         }
       );
@@ -432,7 +432,7 @@ function Blackboxdetails() {
 
         if (!keydata.some((item) => item.asin === updatedData.asin)) {
           addkeyworddata({
-            userId: "67596d1d03c4ea704cbeb250",
+            userId: "676cdf46a70e449880e336e4",
             category: updatedData.category?.name || "",
             asin: updatedData.asin || "",
           });
@@ -522,7 +522,7 @@ function Blackboxdetails() {
                                 ? `$${item.product_price}`
                                 : `${item.product_price}`}
                             </div>
-                            <div
+                            {/* <div
                               className="poppins-regular"
                               style={{
                                 color: "grey",
@@ -533,7 +533,7 @@ function Blackboxdetails() {
                               }}
                             >
                               {convertSalesVolume(item.sales_volume)}
-                            </div>
+                            </div> */}
                           </div>
                         </div>
                       </Link>
