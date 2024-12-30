@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Plan = () => {
   const [showPaymentModal, setShowPaymentModal] = useState(false);
@@ -9,22 +10,25 @@ const Plan = () => {
 
   const [userData, setUserdata] = useState(null);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const userdata = localStorage.getItem("user");
 
     if (userdata) {
       try {
         const parsedUser = JSON.parse(userdata);
-
-        // Set the _id in state
-        setUserdata(parsedUser);
+        setUserdata(parsedUser); // Set the user data if available
       } catch (error) {
         console.error("Error parsing user data from localStorage:", error);
       }
     } else {
       console.log("No user data found in localStorage.");
+      navigate("/"); // Redirect to the login page if userData is not found
     }
-  }, []);
+  }, [navigate]);
+
+  console.log("userData", userData);
 
   const loadRazorpayScript = () => {
     return new Promise((resolve) => {
@@ -81,27 +85,13 @@ const Plan = () => {
     console.log("Generated Order ID:", orderId);
 
     const options = {
-      key: "rzp_live_yzuuxyiOlu7Oyj", // Razorpay Key
+      key: "rzp_live_gZWb9zLxROzkYB", // Razorpay Key
       amount: price * 100, // Convert to paise
       currency: "INR",
-      name: "Proleveragea",
+      name: "Proleverage",
       description: "Plan Subscription",
       order_id: orderId,
-      // handler: async (response) => {
-      //   try {
-      //     await axios.get(
-      //       `https://api.proleverageadmin.in/api/payment/payment/${response.razorpay_payment_id}`,
-      //       {
-      //         params: { userId: "676cdf46a70e449880e336e4", planId },
-      //       }
-      //     );
 
-      //     window.location.assign("/payment-success");
-      //   } catch (error) {
-      //     console.error("Error verifying payment:", error);
-      //     alert("Payment verification failed.");
-      //   }
-      // },
       handler: async (response) => {
         try {
           const verificationResponse = await axios.get(

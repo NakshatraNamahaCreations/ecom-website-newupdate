@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Select from "react-select";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Blackbox() {
@@ -16,24 +16,47 @@ function Blackbox() {
   const [alluserdata, setalluserdata] = useState("");
   const [categories, setCategories] = useState([]);
 
-  const userdata = localStorage.getItem("user");
-
-  console.log("userdata", userdata);
+  const [userData, setUserdata] = useState(null);
 
   useEffect(() => {
-    getuser();
-  }, [alluserdata]);
+    // Fetch the user data from localStorage
+    const userdata = localStorage.getItem("user");
+
+    if (userdata) {
+      try {
+        const parsedUser = JSON.parse(userdata);
+        setUserdata(parsedUser); // Update state with user data
+      } catch (error) {
+        console.error("Error parsing user data from localStorage:", error);
+      }
+    } else {
+      console.log("No user data found in localStorage.");
+    }
+  }, []);
+
+  console.log("userData", userData);
+
+  useEffect(() => {
+    if (userData?._id) {
+      getuser();
+    }
+  }, [userData]);
 
   const getuser = async () => {
+    if (!userData?._id) {
+      console.error("User ID is undefined, cannot fetch user data.");
+      return;
+    }
+
     try {
       const response = await axios.get(
-        `https://api.proleverageadmin.in//api/users/getparticularuser/${userdata?._id}`
+        `https://api.proleverageadmin.in/api/users/getparticularuser/${userData._id}`
       );
       if (response.status === 200) {
-        setalluserdata(response.data.data);
+        setalluserdata(response.data.data); // Store user data in state
       }
     } catch (error) {
-      console.error("Error fetching keyword data:", error);
+      console.error("Error fetching user data:", error);
     }
   };
 
@@ -98,8 +121,109 @@ function Blackbox() {
   console.log("categories", categories);
 
   return (
-    <div className="container mt-5">
-      <div className="row">
+    <div className="container mt-3">
+      <div
+        className="row mt-1 mb-3 web-tools"
+        style={{ justifyContent: "center" }}
+      >
+        <div className="col-md-2">
+          <Link to="/asin-code" style={{ textDecoration: "none" }}>
+            <div
+              className="poppins-regular"
+              style={{
+                border: "1px solid darkblue",
+                color: "black",
+                textAlign: "center",
+                padding: "10px",
+                borderRadius: "5px",
+                fontSize: "14px",
+              }}
+            >
+              ASIN/Product
+            </div>
+          </Link>
+        </div>
+
+        <div className="col-md-2">
+          <Link to="/product-search" style={{ textDecoration: "none" }}>
+            <div
+              className="poppins-regular"
+              style={{
+                // backgroundColor: "darkblue",
+                border: "1px solid darkblue",
+                color: "black",
+                textAlign: "center",
+                padding: "10px",
+                borderRadius: "5px",
+                fontSize: "14px",
+              }}
+            >
+              Keyword
+            </div>
+          </Link>
+        </div>
+
+        <div className="col-md-2">
+          <div
+            className="poppins-regular"
+            style={{
+              backgroundColor: "darkblue",
+              color: "white",
+              textAlign: "center",
+              padding: "10px",
+              borderRadius: "5px",
+              fontSize: "14px",
+            }}
+          >
+            Blackbox
+          </div>
+        </div>
+      </div>
+
+      <div className="mobile-tools">
+        <div className="d-flex " style={{ justifyContent: "space-between" }}>
+          <div className="col-6">
+            <Link to="/asin-code" style={{ textDecoration: "none" }}>
+              <div
+                className="poppins-regular"
+                style={{
+                  // backgroundColor: "darkblue",
+                  border: "1px solid darkblue",
+                  color: "black",
+                  textAlign: "center",
+                  padding: "10px",
+                  borderRadius: "5px",
+                  fontSize: "14px",
+                }}
+              >
+                ASIN/Product
+              </div>
+            </Link>
+          </div>
+
+          <div className="col-6 px-3">
+            <Link to="/product-search" style={{ textDecoration: "none" }}>
+              <div
+                className="poppins-regular"
+                style={{
+                  // backgroundColor: "darkblue",
+                  border: "1px solid darkblue",
+                  color: "black",
+
+                  textAlign: "center",
+                  padding: "10px",
+                  borderRadius: "5px",
+                  fontSize: "14px",
+                }}
+              >
+                Keyword
+              </div>
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      <div className="row mt-3">
         <div className="col-md-6 mb-3">
           <label className="form-label">Marketplace</label>
           <div className="custom-select-container" style={{ width: "100%" }}>

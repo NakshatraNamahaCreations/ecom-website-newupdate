@@ -26,15 +26,11 @@ const Asin = () => {
   const [userData, setUserdata] = useState(null);
 
   useEffect(() => {
-    // Retrieve the user data from localStorage
     const userdata = localStorage.getItem("user");
 
     if (userdata) {
       try {
-        // Parse the JSON string into an object
         const parsedUser = JSON.parse(userdata);
-
-        // Set the _id in state
         setUserdata(parsedUser);
       } catch (error) {
         console.error("Error parsing user data from localStorage:", error);
@@ -44,7 +40,7 @@ const Asin = () => {
     }
   }, []);
 
-  console.log("userData===suman", "676cdf46a70e449880e336e4");
+  console.log("userData", userData);
 
   const loadScript = (src) => {
     return new Promise((resolve) => {
@@ -217,19 +213,26 @@ const Asin = () => {
   };
 
   useEffect(() => {
-    getuser();
-  }, [alluserdata]);
+    if (userData?._id) {
+      getuser();
+    }
+  }, [userData, alluserdata]);
 
   const getuser = async () => {
+    if (!userData?._id) {
+      console.error("User ID is undefined, cannot fetch user data.");
+      return;
+    }
+
     try {
       const response = await axios.get(
-        `https://api.proleverageadmin.in/api/users/getparticularuser/${userData?._id}`
+        `https://api.proleverageadmin.in/api/users/getparticularuser/${userData._id}`
       );
       if (response.status === 200) {
-        setalluserdata(response.data.data);
+        setalluserdata(response.data.data); // Store user data in state
       }
     } catch (error) {
-      console.error("Error fetching keyword data:", error);
+      console.error("Error fetching user data:", error);
     }
   };
 
@@ -411,6 +414,25 @@ const Asin = () => {
                   </div>
                 </Link>
               </div>
+
+              <div className="col-md-2">
+                <Link to="/black-box" style={{ textDecoration: "none" }}>
+                  <div
+                    className="poppins-regular"
+                    style={{
+                      // backgroundColor: "darkblue",
+                      border: "1px solid darkblue",
+                      color: "black",
+                      textAlign: "center",
+                      padding: "10px",
+                      borderRadius: "5px",
+                      fontSize: "14px",
+                    }}
+                  >
+                    Blackbox
+                  </div>
+                </Link>
+              </div>
             </div>
 
             <div className="row" style={{ justifyContent: "center" }}>
@@ -435,10 +457,16 @@ const Asin = () => {
                         <strong>Expiry Date:</strong>{" "}
                         {formatDate(alluserdata.expiryDate)}
                       </p> */}
-                      <p className="user-info poppins-regular">
+                      <p
+                        className="user-info poppins-regular"
+                        style={{ color: "black" }}
+                      >
                         <strong>Search Count:</strong> {alluserdata.searchcount}
                       </p>
-                      <p className="user-info poppins-regular">
+                      <p
+                        className="user-info poppins-regular"
+                        style={{ color: "black" }}
+                      >
                         <strong>Search Limit:</strong> {alluserdata.searchLimit}
                       </p>
                     </>
@@ -1070,7 +1098,51 @@ const Asin = () => {
         </div>
       </div>
 
-      <div className=" mobile-tools">
+      <div className="mobile-tools">
+        <div className="row mt-3 mb-3">
+          <div className="col-md-12">
+            <div
+              className="d-flex align-items-center"
+              style={{ width: "100%" }}
+            >
+              <select
+                className="form-select"
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
+                style={{
+                  flex: "1",
+                  padding: "0.5rem",
+                  fontSize: "1rem",
+                  borderRadius: "0.25rem",
+                  marginRight: "10px",
+                }}
+              >
+                <option value="IN" className="flag-option">
+                  amazon.in
+                </option>
+                <option value="US" className="flag-option">
+                  amazon.com
+                </option>
+              </select>
+              <img
+                src={
+                  country === "IN"
+                    ? "https://flagcdn.com/w40/in.png"
+                    : "https://flagcdn.com/w40/us.png"
+                }
+                alt={`${country} Flag`}
+                style={{
+                  width: "30px",
+                  height: "auto",
+                  borderRadius: "5px",
+                  position: "absolute",
+                  right: "63px",
+                }}
+              />
+            </div>
+          </div>
+        </div>
+
         <div className="row" style={{}}>
           <div className="col-6">
             <div
@@ -1169,6 +1241,60 @@ const Asin = () => {
           </div>
         )} */}
 
+        <div className="row mt-4" style={{ justifyContent: "center" }}>
+          {alluserdata ? (
+            <>
+              <p
+                className="user-info poppins-regular"
+                style={{
+                  color: "black",
+                  textAlign: "center",
+                  fontSize: "14px",
+                }}
+              >
+                {alluserdata.searchcount}10/100{alluserdata.searchLimit}
+              </p>
+
+              <div
+                className="poppins-regular mb-3"
+                style={{ textAlign: "center", fontSize: "14px" }}
+              >
+                Expiry Date :{" "}
+                <span className="poppins-medium">
+                  {alluserdata.expiryDate}{" "}
+                </span>
+              </div>
+            </>
+          ) : (
+            ""
+          )}
+
+          <hr />
+        </div>
+
+        <div className="row" style={{ justifyContent: "center" }}>
+          <div className="col-6">
+            <Link
+              to="/black-box"
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              <div
+                className="poppins-regular"
+                style={{
+                  backgroundColor: "darkblue",
+                  color: "white",
+                  textAlign: "center",
+                  padding: "10px",
+                  borderRadius: "5px",
+                  fontSize: "14px",
+                }}
+              >
+                Black Box
+              </div>
+            </Link>
+          </div>
+        </div>
+
         {data.length > 0 ? (
           <div>
             {data.map((item) => (
@@ -1219,278 +1345,16 @@ const Asin = () => {
             ))}
           </div>
         ) : (
-          // <div className="poppins-medium mt-3" style={{ color: "red" }}>
-          //   No data found
-          // </div>
           ""
         )}
 
-        {/* {dailySales > 0 && (
-          <div style={{ marginTop: "20px" }}>
-            <h2 className="poppins-medium" style={{ color: "blue" }}>
-              FBA fee: {dailySales.toFixed(2)}
-            </h2>
-          </div>
-        )} */}
-
         {data.length === 0 && (
-          <div className="row mt-2">
-            <div className="poppins-black pb-2">Search Products</div>
-            <div className="col-4">
-              <div className="d-flex" style={{ justifyContent: "center" }}>
-                <img
-                  src="./images/yogamat.jpg"
-                  alt="loading....."
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    borderRadius: "10px",
-                  }}
-                />
-              </div>
-
-              <div className="poppins-regular pt-1 text-center">Yoga Mat</div>
-            </div>
-            <div className="col-4">
-              <div className="d-flex" style={{ justifyContent: "center" }}>
-                <img
-                  src="./images/ear.jpg"
-                  alt="loading....."
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    borderRadius: "10px",
-                  }}
-                />
-              </div>
-              <div className="poppins-regular pt-1 text-center">Ear buds</div>
-            </div>
-            <div className="col-4">
-              <div className="d-flex" style={{ justifyContent: "center" }}>
-                <img
-                  src="./images/mobile.jpg"
-                  alt="loading....."
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    borderRadius: "10px",
-                  }}
-                />
-              </div>
-              <div className="poppins-regular pt-1 text-center">Mobiles</div>
-            </div>
-
-            <div className="col-4 mt-3">
-              <div className="d-flex" style={{ justifyContent: "center" }}>
-                <img
-                  src="./images/dress.jpg"
-                  alt="loading....."
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    borderRadius: "10px",
-                  }}
-                />
-              </div>
-              <div className="poppins-regular pt-1 text-center">Tables</div>
-            </div>
-
-            <div className="col-4 mt-3">
-              <div className="d-flex" style={{ justifyContent: "center" }}>
-                <img
-                  src="./images/jewellery.png"
-                  alt="loading....."
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    borderRadius: "10px",
-                  }}
-                />
-              </div>
-              <div className="poppins-regular pt-1 text-center">Jewellery</div>
-            </div>
-
-            <div className="col-4 mt-3">
-              <div className="d-flex" style={{ justifyContent: "center" }}>
-                <img
-                  src="./images/pen.png"
-                  alt="loading....."
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    borderRadius: "10px",
-                  }}
-                />
-              </div>
-              <div className="poppins-regular pt-1 text-center">Pen</div>
-            </div>
-
-            <div className="col-4 mt-3">
-              <div className="d-flex" style={{ justifyContent: "center" }}>
-                <img
-                  src="./images/shoes.png"
-                  alt="loading....."
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    borderRadius: "10px",
-                  }}
-                />
-              </div>
-              <div className="poppins-regular pt-1 text-center">Shoes</div>
-            </div>
-
-            <div className="col-4 mt-3">
-              <div className="d-flex" style={{ justifyContent: "center" }}>
-                <img
-                  src="./images/toy.jfif"
-                  alt="loading....."
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    borderRadius: "10px",
-                  }}
-                />
-              </div>
-              <div className="poppins-regular pt-1 text-center">
-                Toys & Games
-              </div>
-            </div>
-
-            <div className="col-4 mt-3">
-              <div className="d-flex" style={{ justifyContent: "center" }}>
-                <img
-                  src="./images/car.jpg"
-                  alt="loading....."
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    borderRadius: "10px",
-                  }}
-                />
-              </div>
-              <div className="poppins-regular pt-1 text-center">
-                Car & Motorbike
-              </div>
-            </div>
-
-            <div className="col-4 mt-3">
-              <div className="d-flex" style={{ justifyContent: "center" }}>
-                <img
-                  src="./images/electronic.png"
-                  alt="loading....."
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    borderRadius: "10px",
-                  }}
-                />
-              </div>
-              <div className="poppins-regular pt-1 text-center">
-                Electronics
-              </div>
-            </div>
-
-            <div className="col-4 mt-3">
-              <div className="d-flex" style={{ justifyContent: "center" }}>
-                <img
-                  src="./images/bp.jfif"
-                  alt="loading....."
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    borderRadius: "10px",
-                  }}
-                />
-              </div>
-              <div className="poppins-regular pt-1 text-center">
-                Health & Personal Care
-              </div>
-            </div>
-
-            <div className="col-4 mt-3">
-              <div className="d-flex" style={{ justifyContent: "center" }}>
-                <img
-                  src="./images/science.jfif"
-                  alt="loading....."
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    borderRadius: "10px",
-                  }}
-                />
-              </div>
-              <div className="poppins-regular pt-1 text-center">
-                Industrial & Scientific
-              </div>
-            </div>
-
-            <div className="col-4 mt-3">
-              <div className="d-flex" style={{ justifyContent: "center" }}>
-                <img
-                  src="./images/music.png"
-                  alt="loading....."
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    borderRadius: "10px",
-                  }}
-                />
-              </div>
-              <div className="poppins-regular pt-1 text-center">
-                Musical Instruments
-              </div>
-            </div>
-
-            <div className="col-4 mt-3">
-              <div className="d-flex" style={{ justifyContent: "center" }}>
-                <img
-                  src="./images/pet.png"
-                  alt="loading....."
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    borderRadius: "10px",
-                  }}
-                />
-              </div>
-              <div className="poppins-regular pt-1 text-center">
-                Pet Supplies
-              </div>
-            </div>
-
-            <div className="col-4 mt-3">
-              <div className="d-flex" style={{ justifyContent: "center" }}>
-                <img
-                  src="./images/sports.png"
-                  alt="loading....."
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    borderRadius: "10px",
-                  }}
-                />
-              </div>
-              <div className="poppins-regular pt-1 text-center">
-                Sports, Fitness & Outdoor
-              </div>
-            </div>
-
-            <div className="col-4 mt-3">
-              <div className="d-flex" style={{ justifyContent: "center" }}>
-                <img
-                  src="./images/watch.jpg"
-                  alt="loading....."
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    borderRadius: "10px",
-                  }}
-                />
-              </div>
-              <div className="poppins-regular pt-1 text-center">Watch</div>
-            </div>
-          </div>
+          <img
+            src="./images/homestep.jpg"
+            alt="loading..."
+            className="mt-3"
+            // style={{ width: "100%", height: "100px" }}
+          />
         )}
 
         {/* Payment Modal */}

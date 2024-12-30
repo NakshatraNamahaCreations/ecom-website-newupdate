@@ -12,6 +12,25 @@ function Blackboxdetails() {
 
   const [itemsToShow, setItemsToShow] = useState(10);
 
+  const [userData, setUserdata] = useState(null);
+
+  useEffect(() => {
+    const userdata = localStorage.getItem("user");
+
+    if (userdata) {
+      try {
+        const parsedUser = JSON.parse(userdata);
+        setUserdata(parsedUser);
+      } catch (error) {
+        console.error("Error parsing user data from localStorage:", error);
+      }
+    } else {
+      console.log("No user data found in localStorage.");
+    }
+  }, []);
+
+  console.log("userData", userData);
+
   const handleShowMore = () => {
     setItemsToShow((prev) => prev + 10);
   };
@@ -71,7 +90,7 @@ function Blackboxdetails() {
   //       {
   //         params: {
   //           query: categoryLabels,
-  //           userId: "676cdf46a70e449880e336e4",
+  //           userId: userData?._id,
   //           country: filterData.country,
   //           min_price: filterData.price.min,
   //           max_price: filterData.price.max,
@@ -132,7 +151,7 @@ function Blackboxdetails() {
   //       {
   //         params: {
   //           query: categoryLabels,
-  //           userId: "676cdf46a70e449880e336e4",
+  //           userId: userData?._id,
   //           country: filterData.country,
   //           min_price: filterData.price.min,
   //           max_price: filterData.price.max,
@@ -207,7 +226,7 @@ function Blackboxdetails() {
   //       {
   //         params: {
   //           query: categoryLabels,
-  //           userId: "676cdf46a70e449880e336e4",
+  //           userId: userData?._id,
   //           country: filterData.country,
   //           min_price: filterData.price.min,
   //           max_price: filterData.price.max,
@@ -260,6 +279,12 @@ function Blackboxdetails() {
   // };
 
   const handleSearch = async () => {
+    const localUserData = JSON.parse(localStorage.getItem("user"));
+
+    if (!localUserData?._id) {
+      alert("User not logged in or user data is missing.");
+      return;
+    }
     if (
       !filterData ||
       !filterData.selectedCategories ||
@@ -268,6 +293,7 @@ function Blackboxdetails() {
       setError("Please select at least one category.");
       return;
     }
+
     setError("");
     setLoading(true);
 
@@ -284,7 +310,7 @@ function Blackboxdetails() {
         {
           params: {
             query: categoryLabels,
-            userId: "676cdf46a70e449880e336e4",
+            userId: localUserData._id,
             country: filterData.country,
             min_price: filterData.price.min,
             max_price: filterData.price.max,
@@ -414,7 +440,7 @@ function Blackboxdetails() {
           params: {
             asin,
             country: filterData?.country || "IN",
-            userId: "676cdf46a70e449880e336e4",
+            userId: userData?._id,
           },
         }
       );
@@ -432,7 +458,7 @@ function Blackboxdetails() {
 
         if (!keydata.some((item) => item.asin === updatedData.asin)) {
           addkeyworddata({
-            userId: "676cdf46a70e449880e336e4",
+            userId: userData?._id,
             category: updatedData.category?.name || "",
             asin: updatedData.asin || "",
           });

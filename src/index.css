@@ -1412,6 +1412,7 @@ button:hover {
   top: 10px;
   right: 10px;
   pointer-events: none; /* Make the flag non-clickable */
+  width: "100%" !important;
 }
 
 .flag-icon {

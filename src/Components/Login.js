@@ -46,7 +46,7 @@ const Login = () => {
       })
       .catch((error) => {
         console.error(error);
-        toast.error("Failed to send OTP. Please try again.");
+        // toast.error("Failed to send OTP. Please try again.");
         setLoading(false);
       });
   }
@@ -87,6 +87,7 @@ const Login = () => {
       if (response.status === 200) {
         console.log("Success");
         localStorage.setItem("token", response.data.token);
+        localStorage.setItem("user", JSON.stringify(response.data.data));
         window.location.assign("/asin-code");
         setUser(response.data);
         setLoading(false);

@@ -117,7 +117,7 @@ function Header() {
               </ul>
             </li> */}
 
-            <li className="nav-item dropdown">
+            {/* <li className="nav-item dropdown">
               <a
                 className="poppins-regular nav-link dropdown-toggle"
                 href="#"
@@ -198,6 +198,20 @@ function Header() {
                   </Link>
                 </li>
               </ul>
+            </li> */}
+
+            <li
+              className={`nav-item ${
+                location.pathname === "/asin-code" ? "active" : ""
+              }`}
+            >
+              <Link
+                className="nav-link poppins-regular"
+                style={{ fontSize: "14px" }}
+                to="/asin-code"
+              >
+                Tools
+              </Link>
             </li>
 
             {/* User Profile Dropdown */}

@@ -112,8 +112,7 @@ function Home() {
 
                   <div className="col-md-9">
                     <div className="poppins-regular px-3 pt-2">
-                      Ecom Gyan Amazon FBA Mastery Course(HINDI) | Lifetime
-                      Access + UNLIMITED 1 on 1 Mentorship
+                      Ecom Gyan 1 on 1 Mentorship
                     </div>
 
                     <div
@@ -128,17 +127,21 @@ function Home() {
                           {/* ₹ 16,997 */}
                         </div>
                       </div>
-
-                      <div
-                        className="poppins-regular"
-                        style={{
-                          backgroundColor: "#F5BF61",
-                          padding: "5px 20px",
-                          borderRadius: "5px",
-                        }}
+                      <a
+                        href="https://www.ecomgyan.com/"
+                        style={{ textDecoration: "none", color: "black" }}
                       >
-                        Know more
-                      </div>
+                        <div
+                          className="poppins-regular"
+                          style={{
+                            backgroundColor: "#F5BF61",
+                            padding: "5px 20px",
+                            borderRadius: "5px",
+                          }}
+                        >
+                          Know more
+                        </div>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -173,7 +176,7 @@ function Home() {
                   <div className="col-md-9">
                     <div className="poppins-regular px-3 pt-2">
                       {/* Ecom Gyan  */}
-                      Done For You Services
+                      Ecom Gyan Done For You Service
                     </div>
 
                     <div
@@ -189,16 +192,21 @@ function Home() {
                         </div>
                       </div>
 
-                      <div
-                        className="poppins-regular"
-                        style={{
-                          backgroundColor: "#F5BF61",
-                          padding: "5px 20px",
-                          borderRadius: "5px",
-                        }}
+                      <a
+                        href="https://www.ecomgyan.com/"
+                        style={{ textDecoration: "none", color: "black" }}
                       >
-                        Know more
-                      </div>
+                        <div
+                          className="poppins-regular"
+                          style={{
+                            backgroundColor: "#F5BF61",
+                            padding: "5px 20px",
+                            borderRadius: "5px",
+                          }}
+                        >
+                          Know more
+                        </div>
+                      </a>
                     </div>
                   </div>
                 </div>
