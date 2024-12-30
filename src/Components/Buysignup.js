@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 
-function Signup() {
+function Buysignup() {
   const [username, setuserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -81,7 +81,7 @@ function Signup() {
         localStorage.setItem("userToken", res.data.token);
         localStorage.setItem("user", JSON.stringify(res.data.user));
 
-        window.location.assign("/login");
+        window.location.assign("/Sign-in");
 
         alert("Registered successfully");
 
@@ -274,6 +274,22 @@ function Signup() {
           </button>
         </form>
 
+        <div
+          className="mt-3"
+          style={{ textAlign: "center", marginBottom: "10px" }}
+        >
+          <span style={{}}>Already have an account? </span>
+          <a
+            href="/sign-in"
+            style={{
+              color: "#6a11cb",
+              textDecoration: "none",
+              fontWeight: "bold",
+            }}
+          >
+            Log In
+          </a>
+        </div>
         {/* <div
         style={{
           display: "flex",
@@ -316,26 +332,9 @@ function Signup() {
           <i className="fab fa-twitter" style={{ color: "#1DA1F2" }}></i>
         </button>
       </div> */}
-
-        <div
-          className="mt-3"
-          style={{ textAlign: "center", marginBottom: "10px" }}
-        >
-          <span style={{}}>Already have an account? </span>
-          <a
-            href="/login"
-            style={{
-              color: "#6a11cb",
-              textDecoration: "none",
-              fontWeight: "bold",
-            }}
-          >
-            Log In
-          </a>
-        </div>
       </div>
     </div>
   );
 }
 
-export default Signup;
+export default Buysignup;

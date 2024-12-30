@@ -23,6 +23,9 @@ import Blackboxdetails from "./Components/Blackboxdetails";
 import PaymentSuccess from "./Components/Paymentsucess";
 import Chat from "./Components/Chat";
 import Notification from "./Components/Notification";
+import Flas from "./Components/Flas";
+import Buysignup from "./Components/Buysignup";
+import Buylogin from "./Components/Buylogin";
 
 function App() {
   return (
@@ -84,7 +87,7 @@ function App() {
           }
         />
         <Route
-          path="/"
+          path="/login"
           element={
             <>
               <Login />
@@ -231,6 +234,30 @@ function App() {
               <Header1 />
               <Notification />
               {/* <Footer /> */}
+            </>
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <>
+              <Flas />
+            </>
+          }
+        />
+        <Route
+          path="/Sign-up"
+          element={
+            <>
+              <Buysignup />
+            </>
+          }
+        />
+        <Route
+          path="/Sign-in"
+          element={
+            <>
+              <Buylogin />
             </>
           }
         />

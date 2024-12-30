@@ -1,56 +1,11 @@
 import axios from "axios";
 import React, { useState } from "react";
 
-function Signup() {
+function SignUp() {
   const [username, setuserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phoneNumber, setphoneNumber] = useState("");
-
-  // const submit = async (e) => {
-  //   e.preventDefault();
-
-  //   if (!name || !email || !phoneNumber) {
-  //     alert("All fields are required");
-  //     return;
-  //   }
-
-  //   try {
-  //     const config = {
-  //       url: "/users/auth/firebaseregister",
-  //       method: "post",
-  //       baseURL: "https://api.proleverageadmin.in/api",
-  //       headers: { "Content-Type": "application/json" },
-  //       data: {
-  //         name,
-  //         email,
-
-  //         phoneNumber,
-  //       },
-  //     };
-
-  //     const res = await axios(config);
-
-  //     if (res.status === 200) {
-  //       console.log("User registered:", res.data.message);
-
-  //       localStorage.setItem("userToken", res.data.token);
-
-  //       // localStorage.setItem("user", JSON.stringify(res.data.user));
-  //       window.location.assign("/");
-
-  //       alert("Registered successfully");
-
-  //       // Reset fields or redirect user
-  //       setName("");
-  //       setEmail("");
-  //       setPassword("");
-  //       setphoneNumber("");
-  //     }
-  //   } catch (error) {
-  //     console.log("Error during registration:", error);
-  //   }
-  // };
 
   const submit = async (e) => {
     e.preventDefault();
@@ -81,7 +36,7 @@ function Signup() {
         localStorage.setItem("userToken", res.data.token);
         localStorage.setItem("user", JSON.stringify(res.data.user));
 
-        window.location.assign("/login");
+        window.location.assign("/");
 
         alert("Registered successfully");
 
@@ -91,9 +46,8 @@ function Signup() {
         setphoneNumber("");
       }
     } catch (error) {
-      // Check if the error is from the backend and display the error message
       if (error.response && error.response.data && error.response.data.error) {
-        alert(error.response.data.error); // Show error message from backend
+        alert(error.response.data.error);
       } else {
         console.log("An unexpected error occurred:", error.message);
         alert("Something went wrong. Please try again later.");
@@ -117,7 +71,7 @@ function Signup() {
       {/* Left Section - Illustration */}
       <div style={{ width: "50%" }}>
         <img
-          src="./images/sigupimg.png"
+          src="./images/illustration.png"
           alt="Illustration"
           style={{ width: "100%", height: "auto" }}
         />
@@ -134,28 +88,28 @@ function Signup() {
         }}
       >
         {/* <div style={{ textAlign: "right", marginBottom: "10px" }}>
-        <span style={{ color: "#6a11cb", fontWeight: "bold" }}>
-          Already have an account?{" "}
-        </span>
-        <a
-          href="/login"
-          style={{
-            color: "#6a11cb",
-            textDecoration: "none",
-            fontWeight: "bold",
-          }}
+          <span style={{ color: "#6a11cb", fontWeight: "bold" }}>
+            Already have an account?{" "}
+          </span>
+          <a
+            href="/login"
+            style={{
+              color: "#6a11cb",
+              textDecoration: "none",
+              fontWeight: "bold",
+            }}
+          >
+            Log In
+          </a>
+        </div>
+        <h2
+          style={{ fontWeight: "600", fontSize: "28px", marginBottom: "10px" }}
         >
-          Log In
-        </a>
-      </div>
-      <h2
-        style={{ fontWeight: "600", fontSize: "28px", marginBottom: "10px" }}
-      >
-        Join Us!
-      </h2>
-      <p style={{ color: "#7A7A7A", marginBottom: "20px" }}>
-        Create an account to get started
-      </p> */}
+          Join Us!
+        </h2>
+        <p style={{ color: "#7A7A7A", marginBottom: "20px" }}>
+          Create an account to get started
+        </p> */}
 
         <div className="d-flex justify-content-center mb-4">
           <a className="navbar-brand" to="/">
@@ -274,68 +228,56 @@ function Signup() {
           </button>
         </form>
 
-        {/* <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          gap: "15px",
-          marginTop: "10px",
-        }}
-      >
-        <button
-          style={{
-            border: "1px solid #ccc",
-            borderRadius: "50%",
-            padding: "10px",
-            backgroundColor: "white",
-            cursor: "pointer",
-          }}
-        >
-          <i className="fab fa-google" style={{ color: "#DB4437" }}></i>
-        </button>
-        <button
-          style={{
-            border: "1px solid #ccc",
-            borderRadius: "50%",
-            padding: "10px",
-            backgroundColor: "white",
-            cursor: "pointer",
-          }}
-        >
-          <i className="fab fa-facebook-f" style={{ color: "#4267B2" }}></i>
-        </button>
-        <button
-          style={{
-            border: "1px solid #ccc",
-            borderRadius: "50%",
-            padding: "10px",
-            backgroundColor: "white",
-            cursor: "pointer",
-          }}
-        >
-          <i className="fab fa-twitter" style={{ color: "#1DA1F2" }}></i>
-        </button>
-      </div> */}
-
         <div
-          className="mt-3"
-          style={{ textAlign: "center", marginBottom: "10px" }}
+          style={{ marginTop: "30px", textAlign: "center", fontSize: "14px" }}
         >
-          <span style={{}}>Already have an account? </span>
-          <a
-            href="/login"
+          Or sign up with
+        </div>
+        {/* <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: "15px",
+            marginTop: "10px",
+          }}
+        >
+          <button
             style={{
-              color: "#6a11cb",
-              textDecoration: "none",
-              fontWeight: "bold",
+              border: "1px solid #ccc",
+              borderRadius: "50%",
+              padding: "10px",
+              backgroundColor: "white",
+              cursor: "pointer",
             }}
           >
-            Log In
-          </a>
-        </div>
+            <i className="fab fa-google" style={{ color: "#DB4437" }}></i>
+          </button>
+          <button
+            style={{
+              border: "1px solid #ccc",
+              borderRadius: "50%",
+              padding: "10px",
+              backgroundColor: "white",
+              cursor: "pointer",
+            }}
+          >
+            <i className="fab fa-facebook-f" style={{ color: "#4267B2" }}></i>
+          </button>
+          <button
+            style={{
+              border: "1px solid #ccc",
+              borderRadius: "50%",
+              padding: "10px",
+              backgroundColor: "white",
+              cursor: "pointer",
+            }}
+          >
+            <i className="fab fa-twitter" style={{ color: "#1DA1F2" }}></i>
+          </button>
+        </div> */}
       </div>
     </div>
   );
 }
 
-export default Signup;
+export default SignUp;

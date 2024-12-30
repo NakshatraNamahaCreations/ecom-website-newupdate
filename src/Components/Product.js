@@ -1182,7 +1182,7 @@ const Product = () => {
                   fontSize: "14px",
                 }}
               >
-                {alluserdata.searchcount}10/100{alluserdata.searchLimit}
+                {alluserdata.searchcount}/{alluserdata.searchLimit}
               </p>
 
               <div
