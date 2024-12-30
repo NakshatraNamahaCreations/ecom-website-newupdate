@@ -376,7 +376,7 @@ const Asin = () => {
 
   return (
     <div className="container">
-      <div className="row justify-content-center web-tools">
+      {/* <div className="row justify-content-center web-tools">
         <div className="col-md-12">
           <div className="row">
             <div className="row mt-3 mb-3" style={{ justifyContent: "center" }}>
@@ -437,26 +437,9 @@ const Asin = () => {
 
             <div className="row" style={{ justifyContent: "center" }}>
               <div className=" col-md-10" style={{ justifyContent: "center" }}>
-                <div
-                  className="mb-3 mt-3"
-                  // style={{ justifyContent: "space-between" }}
-                >
-                  {/* <p className="user-info poppins-regular">
-                    <strong>Expiry Date:</strong>{" "}
-                    {formatDate(alluserdata.expiryDate)}
-                  </p>
-                  <p className="user-info poppins-regular">
-                    <strong>Search Count:</strong> {alluserdata.searchcount}
-                  </p>
-                  <p className="user-info poppins-regular">
-                    <strong>Search Limit:</strong> {alluserdata.searchLimit}
-                  </p> */}
+                <div className="mb-3 mt-3">
                   {alluserdata ? (
                     <>
-                      {/* <p className="user-info poppins-regular">
-                        <strong>Expiry Date:</strong>{" "}
-                        {formatDate(alluserdata.expiryDate)}
-                      </p> */}
                       <p
                         className="user-info poppins-regular"
                         style={{ color: "black" }}
@@ -532,9 +515,8 @@ const Asin = () => {
                     <button
                       className="btn btn-primary search_icon"
                       type="submit"
-                      // onClick={search}
                       onClick={handleSearch}
-                      disabled={loading} // Disable button while loading
+                      disabled={loading}
                     >
                       {loading ? (
                         <CircularProgress size={20} color="inherit" />
@@ -542,22 +524,6 @@ const Asin = () => {
                         "Search"
                       )}
                     </button>
-                    {/* <button
-                      className={`btn btn-primary ${
-                        isAsinExists ? "update-button" : "search-button"
-                      }`}
-                      type="submit"
-                      onClick={handleSearch}
-                      disabled={loading} // Disable button while loading
-                    >
-                      {loading ? (
-                        <CircularProgress size={20} color="inherit" />
-                      ) : isAsinExists ? (
-                        "Update ASIN"
-                      ) : (
-                        "Search"
-                      )}
-                    </button> */}
                   </div>
                 </div>
                 {error && (
@@ -572,83 +538,8 @@ const Asin = () => {
                   </div>
                 )}
 
-                {/* Working Condition */}
-
-                {/* {data && Object.keys(data).length > 0 && (
-                  <div
-                    onClick={() =>
-                      addasindata({
-                        category: data.category?.name || "",
-                        salesvolume: data.sales_volume || "",
-                        price: data.product_price || "",
-                        asin: data.asin || "",
-                        product_title: data.product_title || "",
-                        product_star_rating: data.product_star_rating || "",
-                        product_num_ratings: data.product_num_ratings || "",
-                        product_url: data.product_url || "",
-                        product_photo: data.product_photo || "",
-                      })
-                    }
-                  >
-                    <Link
-                      to="/asin-details"
-                      state={{ data, dailySales: dailySales }}
-                      style={{ textDecoration: "none", color: "black" }}
-                    >
-                      <div className="row mt-3" key={data.asin}>
-                        <div className="col-2">
-                          <img
-                            src={data.product_photo}
-                            alt={data.product_title}
-                            style={{ width: "100%", height: "100px" }}
-                          />
-                        </div>
-                        <div
-                          className="col-10 d-flex"
-                          style={{
-                            flexDirection: "column",
-                            justifyContent: "center",
-                          }}
-                        >
-                          <div
-                            className="poppins-regular"
-                            style={{
-                              color: "grey",
-                              display: "-webkit-box",
-                              WebkitLineClamp: 2,
-                              WebkitBoxOrient: "vertical",
-                              overflow: "hidden",
-                            }}
-                          >
-                            {data.product_title}
-                          </div>
-                          <div className="poppins-medium">
-                            {data.country === "US"
-                              ? `$${data.product_price}`
-                              : `Rs. ${data.product_price}`}
-                          </div>
-                        </div>
-                      </div>
-                    </Link>
-                  </div>
-                )} */}
-
                 {data && Object.keys(data).length > 0 && (
-                  <div
-                  // onClick={() =>
-                  //   addasindata({
-                  //     category: data.category?.name || "",
-                  //     sales_volume: data.sales_volume || "",
-                  //     product_price: data.product_price || "",
-                  //     asin: data.asin || "",
-                  //     product_title: data.product_title || "",
-                  //     product_star_rating: data.product_star_rating || "",
-                  //     product_num_ratings: data.product_num_ratings || "",
-                  //     product_url: data.product_url || "",
-                  //     product_photo: data.product_photo || "",
-                  //   })
-                  // }
-                  >
+                  <div>
                     <Link
                       to="/asin-details"
                       state={{ data, dailySales: dailySales }}
@@ -689,411 +580,191 @@ const Asin = () => {
                         </div>
                       </div>
                     </Link>
-                  </div>
-                )}
-
-                {/* {dailySales > 0 && (
-                <div style={{ marginTop: "20px" }}>
-                  <h2 className="poppins-medium" style={{ color: "blue" }}>
-                    FBA fee: {dailySales.toFixed(2)}
-                  </h2>
-                </div>
-              )} */}
-                {data.length === 0 && (
-                  <div className="row mt-2">
-                    <div className="poppins-black pb-2">Search Products</div>
-                    <div className="col-2">
-                      <div
-                        className="d-flex"
-                        style={{ justifyContent: "center" }}
-                      >
-                        <img
-                          src="./images/yogamat.jpg"
-                          alt="loading....."
-                          style={{
-                            width: "80px",
-                            height: "80px",
-                            borderRadius: "10px",
-                          }}
-                        />
-                      </div>
-
-                      <div className="poppins-regular pt-1 text-center">
-                        Yoga Mat
-                      </div>
-                    </div>
-                    <div className="col-2">
-                      <div
-                        className="d-flex"
-                        style={{ justifyContent: "center" }}
-                      >
-                        <img
-                          src="./images/ear.jpg"
-                          alt="loading....."
-                          style={{
-                            width: "80px",
-                            height: "80px",
-                            borderRadius: "10px",
-                          }}
-                        />
-                      </div>
-                      <div className="poppins-regular pt-1 text-center">
-                        Ear buds
-                      </div>
-                    </div>
-                    <div className="col-2">
-                      <div
-                        className="d-flex"
-                        style={{ justifyContent: "center" }}
-                      >
-                        <img
-                          src="./images/mobile.jpg"
-                          alt="loading....."
-                          style={{
-                            width: "80px",
-                            height: "80px",
-                            borderRadius: "10px",
-                          }}
-                        />
-                      </div>
-                      <div className="poppins-regular pt-1 text-center">
-                        Mobiles
-                      </div>
-                    </div>
-
-                    <div className="col-2 mt-3">
-                      <div
-                        className="d-flex"
-                        style={{ justifyContent: "center" }}
-                      >
-                        <img
-                          src="./images/dress.jpg"
-                          alt="loading....."
-                          style={{
-                            width: "80px",
-                            height: "80px",
-                            borderRadius: "10px",
-                          }}
-                        />
-                      </div>
-                      <div className="poppins-regular pt-1 text-center">
-                        Tables
-                      </div>
-                    </div>
-
-                    <div className="col-2 mt-3">
-                      <div
-                        className="d-flex"
-                        style={{ justifyContent: "center" }}
-                      >
-                        <img
-                          src="./images/jewellery.png"
-                          alt="loading....."
-                          style={{
-                            width: "80px",
-                            height: "80px",
-                            borderRadius: "10px",
-                          }}
-                        />
-                      </div>
-                      <div className="poppins-regular pt-1 text-center">
-                        Jewellery
-                      </div>
-                    </div>
-
-                    <div className="col-2 mt-3">
-                      <div
-                        className="d-flex"
-                        style={{ justifyContent: "center" }}
-                      >
-                        <img
-                          src="./images/pen.png"
-                          alt="loading....."
-                          style={{
-                            width: "80px",
-                            height: "80px",
-                            borderRadius: "10px",
-                          }}
-                        />
-                      </div>
-                      <div className="poppins-regular pt-1 text-center">
-                        Pen
-                      </div>
-                    </div>
-
-                    <div className="col-2 mt-3">
-                      <div
-                        className="d-flex"
-                        style={{ justifyContent: "center" }}
-                      >
-                        <img
-                          src="./images/shoes.png"
-                          alt="loading....."
-                          style={{
-                            width: "80px",
-                            height: "80px",
-                            borderRadius: "10px",
-                          }}
-                        />
-                      </div>
-                      <div className="poppins-regular pt-1 text-center">
-                        Shoes
-                      </div>
-                    </div>
-
-                    <div className="col-2 mt-3">
-                      <div
-                        className="d-flex"
-                        style={{ justifyContent: "center" }}
-                      >
-                        <img
-                          src="./images/toy.jfif"
-                          alt="loading....."
-                          style={{
-                            width: "80px",
-                            height: "80px",
-                            borderRadius: "10px",
-                          }}
-                        />
-                      </div>
-                      <div className="poppins-regular pt-1 text-center">
-                        Toys & Games
-                      </div>
-                    </div>
-
-                    <div className="col-2 mt-3">
-                      <div
-                        className="d-flex"
-                        style={{ justifyContent: "center" }}
-                      >
-                        <img
-                          src="./images/car.jpg"
-                          alt="loading....."
-                          style={{
-                            width: "80px",
-                            height: "80px",
-                            borderRadius: "10px",
-                          }}
-                        />
-                      </div>
-                      <div className="poppins-regular pt-1 text-center">
-                        Car & Motorbike
-                      </div>
-                    </div>
-
-                    <div className="col-2 mt-3">
-                      <div
-                        className="d-flex"
-                        style={{ justifyContent: "center" }}
-                      >
-                        <img
-                          src="./images/electronic.png"
-                          alt="loading....."
-                          style={{
-                            width: "80px",
-                            height: "80px",
-                            borderRadius: "10px",
-                          }}
-                        />
-                      </div>
-                      <div className="poppins-regular pt-1 text-center">
-                        Electronics
-                      </div>
-                    </div>
-
-                    <div className="col-2 mt-3">
-                      <div
-                        className="d-flex"
-                        style={{ justifyContent: "center" }}
-                      >
-                        <img
-                          src="./images/bp.jfif"
-                          alt="loading....."
-                          style={{
-                            width: "80px",
-                            height: "80px",
-                            borderRadius: "10px",
-                          }}
-                        />
-                      </div>
-                      <div className="poppins-regular pt-1 text-center">
-                        Health & Personal Care
-                      </div>
-                    </div>
-
-                    <div className="col-2 mt-3">
-                      <div
-                        className="d-flex"
-                        style={{ justifyContent: "center" }}
-                      >
-                        <img
-                          src="./images/science.jfif"
-                          alt="loading....."
-                          style={{
-                            width: "80px",
-                            height: "80px",
-                            borderRadius: "10px",
-                          }}
-                        />
-                      </div>
-                      <div className="poppins-regular pt-1 text-center">
-                        Industrial & Scientific
-                      </div>
-                    </div>
-
-                    <div className="col-2 mt-3">
-                      <div
-                        className="d-flex"
-                        style={{ justifyContent: "center" }}
-                      >
-                        <img
-                          src="./images/music.png"
-                          alt="loading....."
-                          style={{
-                            width: "80px",
-                            height: "80px",
-                            borderRadius: "10px",
-                          }}
-                        />
-                      </div>
-                      <div className="poppins-regular pt-1 text-center">
-                        Musical Instruments
-                      </div>
-                    </div>
-
-                    <div className="col-2 mt-3">
-                      <div
-                        className="d-flex"
-                        style={{ justifyContent: "center" }}
-                      >
-                        <img
-                          src="./images/pet.png"
-                          alt="loading....."
-                          style={{
-                            width: "80px",
-                            height: "80px",
-                            borderRadius: "10px",
-                          }}
-                        />
-                      </div>
-                      <div className="poppins-regular pt-1 text-center">
-                        Pet Supplies
-                      </div>
-                    </div>
-
-                    <div className="col-2 mt-3">
-                      <div
-                        className="d-flex"
-                        style={{ justifyContent: "center" }}
-                      >
-                        <img
-                          src="./images/sports.png"
-                          alt="loading....."
-                          style={{
-                            width: "80px",
-                            height: "80px",
-                            borderRadius: "10px",
-                          }}
-                        />
-                      </div>
-                      <div className="poppins-regular pt-1 text-center">
-                        Sports, Fitness & Outdoor
-                      </div>
-                    </div>
-
-                    <div className="col-2 mt-3">
-                      <div
-                        className="d-flex"
-                        style={{ justifyContent: "center" }}
-                      >
-                        <img
-                          src="./images/watch.jpg"
-                          alt="loading....."
-                          style={{
-                            width: "80px",
-                            height: "80px",
-                            borderRadius: "10px",
-                          }}
-                        />
-                      </div>
-                      <div className="poppins-regular pt-1 text-center">
-                        Watch
-                      </div>
-                    </div>
                   </div>
                 )}
               </div>
             </div>
-            {/* <div className="col-md-6">
-              <h1 className="poppins-medium" style={{ color: "darkblue" }}>
-                FBA Fee Calculator
-              </h1>
+          </div>
+        </div>
+      </div> */}
 
-              <div className="row mt-3 mb-3">
-                <div className="col-md-10">
-                  <input
-                    className="form-control"
-                    placeholder="Enter ASIN"
-                    type="number"
-                    value={price}
-                    onChange={(e) => setPrice(Number(e.target.value))}
-                  />
-                </div>
-                <div className="col-md-2">
-                  <button
-                    className="btn btn-primary poppins-medium"
-                    type="button"
-                    onClick={calculateFees}
+      <div className="container-fluid d-flex align-items-center web-tools mt-5">
+        <div className="row w-100  rounded-4 overflow-hidden bg-white web-tools">
+          {/* Left Panel */}
+          <div className="col-md-7 p-5">
+            <div className="text-center mb-4">
+              <h2
+                className="poppins-regular text-primary"
+                style={{ fontSize: "16px" }}
+              >
+                ASIN/Product Search
+              </h2>
+              <p className="text-muted poppins-regular">
+                Search for Amazon products using ASIN codes.
+              </p>
+            </div>
+
+            {/* Navigation Buttons */}
+            <div className="d-flex justify-content-center gap-3 mb-4">
+              <button className="btn btn-primary w-25">ASIN/Product</button>
+              <Link
+                to="/product-search"
+                className="btn btn-outline-primary w-25"
+              >
+                Keyword
+              </Link>
+              <Link to="/black-box" className="btn btn-outline-primary w-25">
+                Blackbox
+              </Link>
+            </div>
+
+            {/* User Data */}
+            {alluserdata && (
+              <div className="text-muted small">
+                <p
+                  className="poppins-regular"
+                  style={{ fontSize: "14px", color: "black" }}
+                >
+                  Search Count: {alluserdata.searchcount}
+                </p>
+                <p
+                  className="poppins-regular"
+                  style={{ fontSize: "14px", color: "black" }}
+                >
+                  Search Limit: {alluserdata.searchLimit}
+                </p>
+              </div>
+            )}
+
+            {/* Country Selector */}
+            <div className="row mt-3 mb-3">
+              <div className="col-md-12">
+                <div className="custom-select-container">
+                  <select
+                    className="form-select custom-select"
+                    value={country}
+                    onChange={(e) => setCountry(e.target.value)}
                   >
-                    Calculate
-                  </button>
+                    <option value="IN" className="flag-option">
+                      amazon.in
+                    </option>
+                    <option value="US" className="flag-option">
+                      amazon.com
+                    </option>
+                  </select>
+                  <div className="flag-container">
+                    {country === "IN" && (
+                      <img
+                        src="https://flagcdn.com/w40/in.png"
+                        alt="India Flag"
+                        className="flag-icon"
+                      />
+                    )}
+                    {country === "US" && (
+                      <img
+                        src="https://flagcdn.com/w40/us.png"
+                        alt="United States Flag"
+                        className="flag-icon"
+                      />
+                    )}
+                  </div>
                 </div>
               </div>
+            </div>
 
-              {feeDetails.price !== undefined && (
-                <div>
-                  <h2 className="poppins-medium" style={{ color: "darkblue" }}>
-                    Fee Details
-                  </h2>
-                  <p className="poppins-regular">
-                    Price:{" "}
-                    <span className="poppins-light">
-                      {feeDetails.price.toFixed(2)}
-                    </span>
-                  </p>
-                  <p className="poppins-regular">
-                    Referral Fee:{" "}
-                    <span className="poppins-light">
-                      {feeDetails.referralFee.toFixed(2)}
-                    </span>
-                  </p>
-                  <p className="poppins-regular">
-                    Closing Fee:{" "}
-                    <span className="poppins-light">
-                      {feeDetails.closingFee.toFixed(2)}
-                    </span>
-                  </p>
-                  <p className="poppins-regular">
-                    Tax:{" "}
-                    <span className="poppins-light">
-                      {feeDetails.tax.toFixed(2)}
-                    </span>
-                  </p>
-                  <p className="poppins-regular">
-                    Cost per unit:{" "}
-                    <span className="poppins-light">
-                      {feeDetails.costPerUnit.toFixed(2)}
-                    </span>
-                  </p>
-                  <p className="poppins-regular">
-                    Total Cost:{" "}
-                    <span className="poppins-light">
-                      {feeDetails.totalCost.toFixed(2)}
-                    </span>
-                  </p>
-                </div>
-              )}
+            {/* <div className="mb-3">
+              <label className="form-label fw-semibold">Enter ASIN Code</label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="e.g., B0D3R1JQ7D"
+                value={asin}
+                onChange={(e) => setAsin(e.target.value)}
+              />
             </div> */}
+
+            <div className="row mt-3 mb-3">
+              <div className="col-md-10">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="e.g., B0D3R1JQ7D"
+                  value={asin}
+                  onChange={(e) => setAsin(e.target.value)}
+                />
+              </div>
+              <div className="col-md-2">
+                <button
+                  className="btn btn-primary search_icon"
+                  type="submit"
+                  onClick={handleSearch}
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <CircularProgress size={20} color="inherit" />
+                  ) : (
+                    "Search"
+                  )}
+                </button>
+              </div>
+            </div>
+
+            {/* Error Message */}
+            {error && <div className="alert alert-danger">{error}</div>}
+
+            {data && Object.keys(data).length > 0 && (
+              <div>
+                <Link
+                  to="/asin-details"
+                  state={{ data, dailySales: dailySales }}
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  <div className="row mt-3" key={data.asin}>
+                    <div className="col-2">
+                      <img
+                        src={data.product_photo}
+                        alt={data.product_title}
+                        style={{ width: "100%", height: "100px" }}
+                      />
+                    </div>
+                    <div
+                      className="col-10 d-flex"
+                      style={{
+                        flexDirection: "column",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <div
+                        className="poppins-regular"
+                        style={{
+                          color: "grey",
+                          display: "-webkit-box",
+                          WebkitLineClamp: 2,
+                          WebkitBoxOrient: "vertical",
+                          overflow: "hidden",
+                        }}
+                      >
+                        {data.product_title}
+                      </div>
+                      <div className="poppins-medium">
+                        {data.country === "US"
+                          ? `$${data.product_price}`
+                          : `Rs. ${data.product_price}`}
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+            )}
+          </div>
+
+          {/* Right Panel */}
+          <div className="col-md-5 d-flex flex-column justify-content-center align-items-center bg-primary text-white p-5">
+            <img
+              src="./images/asinimg.png"
+              alt="Illustration"
+              className="img-fluid rounded"
+            />
           </div>
         </div>
       </div>

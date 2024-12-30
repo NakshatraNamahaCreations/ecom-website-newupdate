@@ -14,7 +14,7 @@ function Header() {
 
   const handleremove = () => {
     localStorage.removeItem("user");
-    window.location.href = "/";
+    window.location.href = "/login";
     alert("Account Deleted Successfully");
   };
 
@@ -50,12 +50,13 @@ function Header() {
               </a>
               <ul className="dropdown-menu" aria-labelledby="toolsDropdown">
                 <li>
-                  <Link
+                  <div
+                    onClick={handleremove}
                     className="dropdown-item poppins-regular"
                     to="/asin-code"
                   >
                     Logout
-                  </Link>
+                  </div>
                 </li>
               </ul>
             </li>

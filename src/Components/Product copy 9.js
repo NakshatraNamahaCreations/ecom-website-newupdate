@@ -461,56 +461,76 @@ const Product = () => {
 
   return (
     <div className="container">
-      <div className="container-fluid d-flex align-items-center web-tools mt-5">
-        <div className="row w-100  rounded-4 overflow-hidden bg-white web-tools">
-          {/* Left Panel */}
-          <div className="col-md-7 p-5">
-            <div className="text-center mb-4">
-              <h2
-                className="poppins-regular text-primary"
-                style={{ fontSize: "16px" }}
-              >
-                Keyword Search
-              </h2>
-              <p className="text-muted poppins-regular">
-                Search for Amazon products using Keyword Searches.
-              </p>
-            </div>
-
-            {/* Navigation Buttons */}
-            <div className="d-flex justify-content-center gap-3 mb-4">
-              <Link to="/asin-code" className="btn btn-outline-primary w-25">
-                ASIN/Product
-              </Link>
-              <Link to="/product-search" className="btn btn-primary w-25">
-                Keyword
-              </Link>
-              <Link to="/black-box" className="btn btn-outline-primary w-25">
-                Blackbox
+      <div className="row justify-content-center web-tools">
+        <div className="col-md-10 p-3">
+          <div className="row mt-3 mb-4" style={{ justifyContent: "center" }}>
+            <div className="col-md-2">
+              <Link to="/asin-code" style={{ textDecoration: "none" }}>
+                <div
+                  className="poppins-regular"
+                  style={{
+                    border: "1px solid darkblue",
+                    color: "black",
+                    textAlign: "center",
+                    padding: "10px",
+                    borderRadius: "5px",
+                    fontSize: "14px",
+                  }}
+                >
+                  ASIN/Product
+                </div>
               </Link>
             </div>
 
-            {/* User Data */}
-            {alluserdata && (
-              <div className="text-muted small">
-                <p
+            <div className="col-md-2">
+              <Link to="/product-search" style={{ textDecoration: "none" }}>
+                <div
                   className="poppins-regular"
-                  style={{ fontSize: "14px", color: "black" }}
+                  style={{
+                    backgroundColor: "darkblue",
+                    color: "white",
+                    textAlign: "center",
+                    padding: "10px",
+                    borderRadius: "5px",
+                    fontSize: "14px",
+                  }}
                 >
-                  Search Count: {alluserdata.searchcount}
-                </p>
-                <p
-                  className="poppins-regular"
-                  style={{ fontSize: "14px", color: "black" }}
-                >
-                  Search Limit: {alluserdata.searchLimit}
-                </p>
-              </div>
-            )}
+                  Keyword
+                </div>
+              </Link>
+            </div>
 
-            {/* Country Selector */}
-            <div className="row mt-3 mb-3">
-              <div className="col-md-12">
+            <div className="col-md-2">
+              <Link to="/black-box" style={{ textDecoration: "none" }}>
+                <div
+                  className="poppins-regular"
+                  style={{
+                    border: "1px solid darkblue",
+                    color: "black",
+                    textAlign: "center",
+                    padding: "10px",
+                    borderRadius: "5px",
+                    fontSize: "14px",
+                  }}
+                >
+                  Blackbox
+                </div>
+              </Link>
+            </div>
+          </div>
+
+          <div className="mb-3 mt-3">
+            <p className="user-info poppins-regular">
+              <strong>Search Count:</strong> {alluserdata.searchcount}
+            </p>
+            <p className="user-info poppins-regular">
+              <strong>Search Limit:</strong> {alluserdata.searchLimit}
+            </p>
+          </div>
+
+          <div className="search-container">
+            <div className="row">
+              <div className="col-md-3 mt-1">
                 <div className="custom-select-container">
                   <select
                     className="form-select custom-select"
@@ -542,23 +562,21 @@ const Product = () => {
                   </div>
                 </div>
               </div>
-            </div>
-
-            <div className="row mt-3 mb-3">
-              <div className="col-md-10">
+              <div className="col-md-9 d-flex">
                 <input
+                  className="input_box mr-3"
                   type="text"
-                  className="form-control"
                   placeholder="Search by ASIN, Product Name, or Category"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
+                  style={{ marginBottom: "20px" }}
                 />
-              </div>
-              <div className="col-md-2">
+
                 <button
                   className="btn btn-primary search_icon"
                   type="submit"
                   onClick={handleSearch}
+                  style={{ height: "40px" }}
                   disabled={loading}
                 >
                   {loading ? (
@@ -567,10 +585,10 @@ const Product = () => {
                     "Search"
                   )}
                 </button>
+                {/* </div> */}
               </div>
             </div>
 
-            {/* Error Message */}
             {error && <div className="alert alert-danger">{error}</div>}
 
             {keywords && Object.keys(keywords).length > 0 && (
@@ -724,15 +742,6 @@ const Product = () => {
             ) : (
               ""
             )}
-          </div>
-
-          {/* Right Panel */}
-          <div className="col-md-5 d-flex flex-column justify-content-center align-items-center bg-primary text-white p-5">
-            <img
-              src="./images/asinimg.png"
-              alt="Illustration"
-              className="img-fluid rounded"
-            />
           </div>
         </div>
       </div>

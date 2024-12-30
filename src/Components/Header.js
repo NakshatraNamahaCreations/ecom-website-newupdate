@@ -17,7 +17,7 @@ function Header() {
 
   const handleremove = () => {
     localStorage.removeItem("user");
-    window.location.href = "/";
+    window.location.href = "/login";
     alert("Account Deleted Successfully");
   };
 
