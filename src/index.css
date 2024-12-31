@@ -17,6 +17,18 @@
   @apply !mr-0 flex-1 py-5 outline-none;
 }
 
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  font-size: 100%;
+  font-weight: inherit;
+  padding: 0;
+  border: 1px solid lightgrey !important;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
