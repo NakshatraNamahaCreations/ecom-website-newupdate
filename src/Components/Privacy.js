@@ -4,118 +4,126 @@ function Privacy() {
   return (
     <div className="container">
       <div className="row">
-        <div className="poppins-black mt-3">1. Introduction</div>
+        <div className="poppins-black mt-3">Privacy Policy</div>
         <p className="poppins-regular mt-2">
-          Proleverage.io ("we", "us", "our") operates the Proleverage.io
-          platform, including our website and mobile applications (collectively,
-          the "Services"). This Privacy Policy outlines how we collect, use,
-          share, and protect your personal information when you use our
-          Services, with a specific focus on users located in India and students
-          accessing our courses.
+          Welcome to www.ProLeverage.io, owned by ProLeverage Pvt Ltd. At
+          ProLeverage.io, we prioritize the security and confidentiality of your
+          personal data. This Privacy Policy outlines how we collect and process
+          your information. By using our website, you acknowledge and consent to
+          the practices described in this policy. Please take a moment to read
+          and understand this Privacy Policy.
         </p>
 
-        <div className="poppins-medium">2. Information We Collect</div>
+        <div className="poppins-medium">
+          1. Personal Information We Collect:
+        </div>
+        <ul>
+          <li className="poppins-regular">
+            When you visit proleverage.io, we automatically collect certain
+            information about your device. This information includes details
+            about your web browser, IP address, time zone, and some of the
+            cookies installed on your device.
+          </li>
+          <li className="poppins-regular pt-2">
+            Additionally, as you browse our website, we collect information
+            about the specific web pages or products you view, the websites or
+            search terms that led you to our site, and your interactions with
+            the site. We refer to this automatically-collected information as
+            “Device Information.”
+          </li>
+          <li className="poppins-regular pt-2">
+            We may also collect personal data you provide to us, such as your
+            name, surname, address, payment information, and more, during the
+            registration process to fulfill our agreement with you.
+          </li>
+        </ul>
+
+        <div className="poppins-medium pt-2">2. Why We Process Your Data:</div>
         <div className="poppins-regular">
-          Personal Information: "Personal Information" refers to information
-          that can identify an individual, such as: Contact Information: Name,
-          email address, phone number, postal address. Account Information:
-          Username, password, and details provided for creating an account and
-          logging in. Course Information: Data related to course access,
-          progress, and feedback. Usage Data: Information collected
-          automatically when you use our Services, including: IP address, device
-          identifiers, browser type, operating system. Pages visited, duration
-          of visits, interaction with content.
+          Our primary concern is the security of customer data. Therefore, we
+          process only the minimal amount of user data necessary to maintain our
+          website. Automatically-collected information is used to identify
+          potential cases of abuse and to gather statistical information about
+          website usage, which is not aggregated in a way that identifies
+          individual users. You can visit our website anonymously without
+          disclosing any personally identifiable information. However, if you
+          wish to use certain features, subscribe to our newsletter, or provide
+          information through forms, you may need to provide personal data, such
+          as your email, first name, last name, city of residence, organization,
+          or telephone number. Failure to provide this information may limit
+          your access to certain features of the website.​
         </div>
 
-        <div className="poppins-medium pt-2">3. How We Collect Informatio</div>
+        <div className="poppins-medium pt-2">3.Your Rights:</div>
         <div className="poppins-regular">
-          Personal Information: We collect this information directly from you
-          when you register for an account, purchase courses, or communicate
-          with us. Usage Data: Collected automatically through cookies and
-          similar technologies during your use of our Services.
+          If you are a European resident, you have certain rights regarding your
+          personal data:
         </div>
-
-        <div className="poppins-medium pt-2">
-          4. How We Use Your Information
-        </div>
+        <ul>
+          <li className="poppins-regular pt-2">The right to be informed.</li>
+          <li className="poppins-regular pt-2">The right of access.</li>
+          <li className="poppins-regular pt-2">The right to rectification.</li>
+          <li className="poppins-regular pt-2">The right to erasure.</li>
+          <li className="poppins-regular pt-2">
+            The right to restrict processing.
+          </li>
+          <li className="poppins-regular pt-2">
+            The right to data portability.
+          </li>
+          <li className="poppins-regular pt-2">The right to object.</li>
+          <li className="poppins-regular pt-2">
+            Rights in relation to automated decision-making and profiling.
+          </li>
+        </ul>
         <div className="poppins-regular">
-          We use your information to: Provide, operate, and improve our
-          Services. Facilitate course access and track your progress.
-          Communicate with you, including sending updates and promotional
-          materials related to our Services. Ensure the security and integrity
-          of our Services.
-        </div>
-
-        <div className="poppins-medium pt-2">5. Sharing and Disclosure</div>
-        <div className="poppins-regular">
-          We may share your information in the following circumstances: Service
-          Providers: With third-party service providers who assist us in
-          operating our Services. Legal Requirements: When required by law or to
-          protect our rights. Business Transfers: In the event of a merger,
-          acquisition, or other business transactions. We do not sell or rent
-          your personal information to third parties.
-        </div>
-
-        <div className="poppins-medium pt-2">6. Data Security</div>
-        <div className="poppins-regular">
-          We implement reasonable security measures to protect your information
-          from unauthorized access or disclosure. However, no system is
-          completely secure, and we cannot guarantee absolute security.
-        </div>
-
-        <div className="poppins-medium pt-2">7. Children's Privacy</div>
-        <div className="poppins-regular">
-          Our Services are not intended for children under the age of 13. We do
-          not knowingly collect personal information from children under 13. If
-          we become aware that we have collected such information, we will take
-          steps to delete it. For users aged 13 and above, we encourage parents
-          to be involved in their children's online activities and to monitor
-          their interactions with our Services.
-        </div>
-
-        <div className="poppins-medium pt-2">8. Course Access and Privacy</div>
-        <div className="poppins-regular">
-          For students accessing courses through our website or app: Account
-          Creation: Students must create an account to access courses. Course
-          Data: We collect data related to course enrollment, progress, and
-          feedback. Course Materials: Students may download course materials for
-          offline access. These materials are subject to our Terms & Conditions
-          and should not be shared without permission.
-        </div>
-
-        <div className="poppins-medium pt-2">9. Your Choices</div>
-        <div className="poppins-regular">
-          You have the right to: Access and update your personal information
-          through your account settings. Opt out of promotional communications
-          by following the unsubscribe instructions provided in those
-          communications.
-        </div>
-
-        <div className="poppins-medium pt-2">
-          10. Changes to This Privacy Policy
+          To exercise these rights, please contact us through the contact
+          information provided below.
         </div>
         <div className="poppins-regular">
-          You have the right to: Access and update your personal information
-          through your account settings. Opt out of promotional communications
-          by following the unsubscribe instructions provided in those
-          communications.
+          Please note that we may process your information to fulfill contracts
+          with you or pursue legitimate business interests. Your data may be
+          transferred outside of Europe, including to Canada and the United
+          States.
         </div>
 
-        <div className="poppins-medium pt-2">11. Contact Us</div>
+        <div className="poppins-medium pt-2">4. Links to Other Websites:</div>
         <div className="poppins-regular">
-          If you have any questions or concerns about this Privacy Policy or our
-          data practices, please contact us at:
+          Our website may contain links to external websites not owned or
+          controlled by us. We are not responsible for the privacy practices of
+          these websites or third parties. When you leave our website, we
+          encourage you to read the privacy statements of each website that
+          collects personal information.
         </div>
 
-        <div className="poppins-medium mt-2">
-          Email: <span className="poppins-regular">support@proleverage.io</span>
+        <div className="poppins-medium pt-2">5. Information Security:</div>
+        <div className="poppins-regular">
+          We take security seriously. We store your information on secure
+          computer servers in a controlled environment to protect it from
+          unauthorized access, use, or disclosure. We maintain administrative,
+          technical, and physical safeguards to protect against unauthorized
+          access, use, modification, and data disclosure. However, we cannot
+          guarantee the security of data transmission over the Internet or
+          wireless networks.
         </div>
-        <div className="poppins-medium mt-2 mb-3">
-          Address:{" "}
-          <span className="poppins-regular ">
-            456C, Sri Sai Heights, 3rd floor, Ideal Homes, Rajarajeshwari Nagar,
-            Bangalore 560098
-          </span>
+
+        <div className="poppins-medium pt-2">6. Legal Disclosure:</div>
+        <div className="poppins-regular">
+          We will disclose collected information when required or permitted by
+          law, such as in response to a subpoena or similar legal process, or
+          when we believe in good faith that disclosure is necessary to protect
+          our rights, your safety, or the safety of others, to investigate
+          fraud, or to respond to a government request.
+        </div>
+
+        <div className="poppins-medium pt-2">7. Contact Information:</div>
+        <div className="poppins-regular">
+          If you have questions about this Privacy Policy or need to contact us
+          regarding your personal information or individual rights, please email
+          us at support@proleverage.io
+        </div>
+        <div className="poppins-regular">
+          Thank you for using proleverage.io and our Mobile App. Your privacy
+          and data security are important to us.
         </div>
       </div>
     </div>

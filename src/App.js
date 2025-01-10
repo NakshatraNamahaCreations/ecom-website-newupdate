@@ -26,6 +26,9 @@ import Notification from "./Components/Notification";
 import Flas from "./Components/Flas";
 import Buysignup from "./Components/Buysignup";
 import Buylogin from "./Components/Buylogin";
+import Privacy from "./Components/Privacy";
+import Terms from "./Components/Terms";
+import Refund from "./Components/Refund";
 
 function App() {
   return (
@@ -38,7 +41,7 @@ function App() {
               <Header />
               <Header1 />
               <Home />
-              {/* <Footer /> */}
+              <Footer />
             </>
           }
         />
@@ -258,6 +261,40 @@ function App() {
           element={
             <>
               <Buylogin />
+            </>
+          }
+        />
+        <Route
+          path="/privacy-policy"
+          element={
+            <>
+              <Header />
+              <Header1 />
+              <Privacy />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/termsofuse"
+          element={
+            <>
+              <Header />
+              <Header1 />
+              <Terms />
+              <Footer />
+            </>
+          }
+        />
+
+        <Route
+          path="/refund-policy"
+          element={
+            <>
+              <Header />
+              <Header1 />
+              <Refund />
+              <Footer />
             </>
           }
         />

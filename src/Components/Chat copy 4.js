@@ -48,8 +48,6 @@ const ChatApp = () => {
   const [groupName, setGroupName] = useState("");
   const [selectedMembers, setSelectedMembers] = useState([]);
   const [userData, setUserdata] = useState(null);
-  const [selectedChat, setSelectedChat] = useState(null); // Track the selected chat
-  const [isGroupChat, setIsGroupChat] = useState(false);
 
   useEffect(() => {
     const userdata = localStorage.getItem("user");
@@ -214,17 +212,11 @@ const ChatApp = () => {
     setReceiverID(id);
     setReceiverName(name);
     setMessages([]);
-    setSelectedChat({ id, name });
-    setIsGroupChat(isGroup);
     setNotifications((prev) => {
       const updatedNotifications = { ...prev };
       delete updatedNotifications[id];
       return updatedNotifications;
     });
-
-    const backToList = () => {
-      setSelectedChat(null);
-    };
 
     const endpoint = isGroup
       ? "https://api.proleverageadmin.in/api/group/group-chat-history"
@@ -344,173 +336,227 @@ const ChatApp = () => {
   };
 
   return (
-    <>
-      <div className="chat-container web-tools">
-        <div className="chat">
-          <div className="chat-sidebar">
-            <h3 className="poppins-regular">
-              Welcome, <span>{userData?.username}</span>
-            </h3>
-            <div className="user-list">
-              <h4 className="poppins-regular" style={{ fontSize: "16px" }}>
-                Groups
-              </h4>
-              {groups.map((group) => (
-                <div key={group._id} className="group">
-                  <div
-                    className={`user poppins-regular ${
-                      group._id === receiverID ? "active-user" : ""
-                    }`}
-                    onClick={() => openChat(group._id, group.groupName, true)}
-                  >
-                    {group.groupName}
-                  </div>
-                </div>
-              ))}
-              <h4 className="poppins-regular" style={{ fontSize: "16px" }}>
-                Users
-              </h4>
-              {filteredUsers.map((user) => (
-                <div
-                  key={user._id}
-                  className={`user ${
-                    user._id === receiverID ? "active-user" : ""
-                  }`}
-                  onClick={() => openChat(user._id, user.username)}
-                >
-                  {user.username}
-                  {notifications[user._id] && (
-                    <span className="notification-badge poppins-regular">
-                      {notifications[user._id]}
-                    </span>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="chat-main">
-            {receiverID ? (
-              <>
-                <div className="chat-header">
-                  <h3 className="poppins-regular" style={{ fontSize: "16px" }}>
-                    Chat with {receiverName}
-                  </h3>
-                </div>
-                <div className="chat-messages">
-                  {messages.map((msg, index) => (
-                    <div
-                      key={index}
-                      className={`message ${
-                        msg.senderID === userData?._id ? "sent" : "received"
-                      }`}
-                    >
-                      <span className="poppins-regular">{msg.content}</span>
-                    </div>
-                  ))}
-                </div>
-                <div className="chat-input">
-                  <input
-                    type="text"
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Type a message"
-                    className="poppins-regular"
-                  />
-                  <button className="poppins-regular" onClick={sendMessage}>
-                    Send
-                  </button>
-                </div>
-              </>
-            ) : (
-              <p className="poppins-regular">
-                Select a user or group to start chatting
-              </p>
-            )}
-          </div>
+    <div className="chat-container">
+      {/* {step === "register" && (
+        <div className="auth-form">
+          <h2>Register</h2>
+          <input
+            placeholder="Username"
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <input
+            placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            placeholder="Password"
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button onClick={register}>Register</button>
+          <p>
+            Already have an account?{" "}
+            <span onClick={() => setStep("login")} className="auth-link">
+              Login here
+            </span>
+          </p>
         </div>
-      </div>
+      )}
 
-      <div className="chat-container mobile-tools">
-        {selectedChat ? (
-          // Chat View
-          <div className="chat-main">
-            <div className="chat-header">
-              {/* <button className="back-button" onClick={backToList}>
-                Back
-              </button> */}
-              <h3 className="poppins-regular">Chat with {selectedChat.name}</h3>
-            </div>
-            <div className="chat-messages">
-              {messages.map((msg, index) => (
+      {step === "login" && (
+        <div className="auth-form">
+          <h2>Login</h2>
+          <input
+            placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            placeholder="Password"
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button onClick={login}>Login</button>
+          <p>
+            Don't have an account?{" "}
+            <span onClick={() => setStep("register")} className="auth-link">
+              Register here
+            </span>
+          </p>
+        </div>
+      )} */}
+
+      {/* {step === "chat" && ( */}
+      <div className="chat">
+        <div className="chat-sidebar">
+          <h3 className="poppins-regular">
+            Welcome, <span>{userData?.username}</span>
+          </h3>
+          {/* <input
+              type="text"
+              value={searchQuery}
+              onChange={handleSearch}
+              placeholder="Search users..."
+              className="user-search"
+            /> */}
+          {/* <button onClick={() => setShowGroupModal(true)}>
+              Create Group
+            </button> */}
+          <div className="user-list">
+            <h4 className="poppins-regular" style={{ fontSize: "16px" }}>
+              Groups
+            </h4>
+            {groups.map((group) => (
+              <div key={group._id} className="group">
                 <div
-                  key={index}
-                  className={`message poppins-regular ${
-                    msg.senderID === userData?._id ? "sent" : "received"
+                  className={`user poppins-regular ${
+                    group._id === receiverID ? "active-user" : ""
                   }`}
-                >
-                  {msg.content}
-                </div>
-              ))}
-            </div>
-            <div className="chat-input">
-              <input
-                type="text"
-                placeholder="Type a message"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                className="poppins-regular"
-              />
-              <button onClick={sendMessage}>Send</button>
-            </div>
-          </div>
-        ) : (
-          // List View
-          <div className="" style={{ padding: "20px" }}>
-            <div className="">
-              <h3 className="poppins-regular mt-3">
-                Welcome, <span>{userData?.username}</span>
-              </h3>
-            </div>
-            <div className="user-list">
-              {groups.map((group) => (
-                <div
-                  key={group._id}
-                  className="user-item poppins-regular"
                   onClick={() => openChat(group._id, group.groupName, true)}
-                  style={{
-                    backgroundColor: "lightgrey",
-                    padding: "10px",
-                    borderRadius: "5px",
-                  }}
                 >
                   {group.groupName}
                 </div>
-              ))}
-
-              {filteredUsers.map((user) => (
-                <div
-                  key={user._id}
-                  className="user-item poppins-regular"
-                  style={{
-                    backgroundColor: "lightgrey",
-                    padding: "10px",
-                    borderRadius: "5px",
-                  }}
-                  onClick={() => openChat(user._id, user.username, false)}
-                >
-                  {user.username}
-                  {notifications[user._id] && (
-                    <span className="notification-badge">
-                      {notifications[user._id]}
-                    </span>
-                  )}
-                </div>
-              ))}
-            </div>
+              </div>
+            ))}
+            <h4 className="poppins-regular" style={{ fontSize: "16px" }}>
+              Users
+            </h4>
+            {filteredUsers.map((user) => (
+              <div
+                key={user._id}
+                className={`user ${
+                  user._id === receiverID ? "active-user" : ""
+                }`}
+                onClick={() => openChat(user._id, user.username)}
+              >
+                {user.username}
+                {notifications[user._id] && (
+                  <span className="notification-badge poppins-regular">
+                    {notifications[user._id]}
+                  </span>
+                )}
+              </div>
+            ))}
           </div>
-        )}
+        </div>
+        <div className="chat-main">
+          {receiverID ? (
+            <>
+              <div className="chat-header">
+                <h3 className="poppins-regular" style={{ fontSize: "16px" }}>
+                  Chat with {receiverName}
+                </h3>
+                {/* {groups.some((group) => group._id === receiverID) && (
+                    <div className="group-controls">
+                      <button onClick={() => showGroupDetails(receiverID)}>
+                        Details
+                      </button>
+                      <button
+                        onClick={() =>
+                          addMemberToGroup(
+                            receiverID,
+                            prompt("Enter Member ID:")
+                          )
+                        }
+                      >
+                        Add Member
+                      </button>
+                      <button
+                        onClick={() =>
+                          removeMemberFromGroup(
+                            receiverID,
+                            prompt("Enter Member ID:")
+                          )
+                        }
+                      >
+                        Remove Member
+                      </button>
+                      <button onClick={() => deleteGroup(receiverID)}>
+                        Delete
+                      </button>
+                    </div>
+                  )} */}
+              </div>
+              <div className="chat-messages">
+                {messages.map((msg, index) => (
+                  <div
+                    key={index}
+                    className={`message ${
+                      msg.senderID === userData?._id ? "sent" : "received"
+                    }`}
+                  >
+                    <span className="poppins-regular">{msg.content}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="chat-input">
+                <input
+                  type="text"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  placeholder="Type a message"
+                  className="poppins-regular"
+                />
+                <button className="poppins-regular" onClick={sendMessage}>
+                  Send
+                </button>
+              </div>
+            </>
+          ) : (
+            <p className="poppins-regular">
+              Select a user or group to start chatting
+            </p>
+          )}
+        </div>
+
+        {/* Group Modal */}
+        <Modal show={showGroupModal} onHide={() => setShowGroupModal(false)}>
+          <Modal.Header closeButton>
+            <Modal.Title>Create Group</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <input
+              type="text"
+              value={groupName}
+              onChange={(e) => setGroupName(e.target.value)}
+              placeholder="Group Name"
+              className="form-control mb-3"
+            />
+            <h5>Select Members</h5>
+            {users.map((user) => (
+              <div key={user._id} className="d-flex align-items-center mb-2">
+                <input
+                  type="checkbox"
+                  value={user._id}
+                  checked={selectedMembers.includes(user._id)}
+                  onChange={(e) => {
+                    if (e.target.checked) {
+                      setSelectedMembers((prev) => [...prev, user._id]);
+                    } else {
+                      setSelectedMembers((prev) =>
+                        prev.filter((id) => id !== user._id)
+                      );
+                    }
+                  }}
+                />
+                <span className="ms-2">{user.username}</span>
+              </div>
+            ))}
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              variant="secondary"
+              onClick={() => setShowGroupModal(false)}
+            >
+              Close
+            </Button>
+            <Button variant="primary" onClick={createGroup}>
+              Create Group
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
-    </>
+      {/* )} */}
+    </div>
   );
 };
 

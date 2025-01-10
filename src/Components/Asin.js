@@ -966,57 +966,51 @@ const Asin = () => {
           </div>
         </div>
 
-        {data.length > 0 ? (
+        {error && <div className="alert alert-danger">{error}</div>}
+
+        {data && Object.keys(data).length > 0 && (
           <div>
-            {data.map((item) => (
-              <Link
-                to="/product-details"
-                state={{ data, dailySales: dailySales }}
-                style={{ textDecoration: "none", color: "black" }}
-              >
-                <div className="row mt-3" key={item.ASIN}>
-                  <div className="col-4">
-                    <img
-                      // onClick={() =>
-                      //   handleProductClick(
-                      //     `https://www.amazon.in/dp/${item?.ASIN}`
-                      //   )
-                      // }
-                      // src={item.Images.Primary.Medium.URL}
-                      src={item.product_photo}
-                      alt={item.product_title}
-                      style={{ width: "100%", height: "100px" }}
-                    />
-                  </div>
+            <Link
+              to="/asin-details"
+              state={{ data, dailySales: dailySales }}
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <div className="row mt-3" key={data.asin}>
+                <div className="col-2">
+                  <img
+                    src={data.product_photo}
+                    alt={data.product_title}
+                    style={{ width: "100%", height: "100px" }}
+                  />
+                </div>
+                <div
+                  className="col-10 d-flex"
+                  style={{
+                    flexDirection: "column",
+                    justifyContent: "center",
+                  }}
+                >
                   <div
-                    className="col-8 d-flex"
+                    className="poppins-regular"
                     style={{
-                      flexDirection: "column",
-                      justifyContent: "center",
+                      color: "grey",
+                      display: "-webkit-box",
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: "vertical",
+                      overflow: "hidden",
                     }}
                   >
-                    <div
-                      className="poppins-regular"
-                      style={{
-                        color: "grey",
-                        display: "-webkit-box",
-                        WebkitLineClamp: 2,
-                        WebkitBoxOrient: "vertical",
-                        overflow: "hidden",
-                      }}
-                    >
-                      {item.product_title}
-                    </div>
-                    <div className="poppins-medium">
-                      Rs. {item.product_price}
-                    </div>
+                    {data.product_title}
+                  </div>
+                  <div className="poppins-medium">
+                    {data.country === "US"
+                      ? `$${data.product_price}`
+                      : `Rs. ${data.product_price}`}
                   </div>
                 </div>
-              </Link>
-            ))}
+              </div>
+            </Link>
           </div>
-        ) : (
-          ""
         )}
 
         {data.length === 0 && (
@@ -1027,6 +1021,14 @@ const Asin = () => {
             // style={{ width: "100%", height: "100px" }}
           />
         )}
+
+        {/* <div className="">
+          <i className="fa-brands fa-rocketchat chat_icon"></i>
+        </div> */}
+
+        <Link to="/chat" className="chat-button-container">
+          <i className="fa-brands fa-rocketchat chat-icon"></i>
+        </Link>
 
         {/* Payment Modal */}
         <Modal

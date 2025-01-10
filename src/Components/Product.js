@@ -1108,6 +1108,10 @@ const Product = () => {
             // style={{ width: "100%", height: "100px" }}
           />
         )}
+
+        <Link to="/chat" className="chat-button-container">
+          <i className="fa-brands fa-rocketchat chat-icon"></i>
+        </Link>
       </div>
 
       <Modal

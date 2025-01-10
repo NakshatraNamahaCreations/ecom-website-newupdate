@@ -103,67 +103,104 @@ const Buylogin = () => {
   }
 
   return (
-    <section className="bg-emerald-500 flex items-center justify-center h-screen">
+    <section className="bg-gradient-to-br from-indigo-500 via-purple-500 to-blue-500 flex items-center justify-center min-h-screen">
       <Toaster toastOptions={{ duration: 4000 }} />
       <div id="recaptcha-container"></div>
-      {user ? (
-        <h2 className="text-center text-white font-medium text-2xl">
-          👍 Login Success
-        </h2>
-      ) : (
-        <div className="w-80 flex flex-col gap-4 rounded-lg p-4">
-          <h1 className="text-center leading-normal text-white font-medium text-3xl mb-6">
-            Welcome to <br /> Proleverage
-          </h1>
-          {showOTP ? (
-            <>
-              <div className="bg-white text-emerald-500 w-fit mx-auto p-4 rounded-full">
-                <BsFillShieldLockFill size={30} />
-              </div>
-              <label className="font-bold text-xl text-white text-center">
-                Enter your OTP
-              </label>
-              <OtpInput
-                value={otp}
-                onChange={setOtp}
-                OTPLength={6}
-                otpType="number"
-                disabled={false}
-                autoFocus
-                className="otp-container"
-              />
-              <button
+
+      <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
+        {user ? (
+          <h2 className="text-center text-green-500 font-semibold text-2xl">
+            🎉 Login Successful
+          </h2>
+        ) : (
+          <div>
+            <img
+              src={showOTP ? "./images/plogo.png" : "./images/plogo.png"}
+              alt="Illustration"
+              className="mx-auto mb-6"
+              style={{
+                height: "50px",
+                width: "200px",
+              }}
+            />
+
+            <h1 className="text-center text-2xl font-semibold text-gray-700 mb-2 poppins-medium">
+              {showOTP ? "Verification Code" : "Verify Your Number"}
+            </h1>
+            <p className="text-center text-gray-500 mb-6 poppins-regular">
+              {showOTP
+                ? "Please enter the code sent to your phone"
+                : "Please enter your Country & your Phone Number"}
+            </p>
+
+            {showOTP ? (
+              <>
+                <OtpInput
+                  value={otp}
+                  onChange={setOtp}
+                  OTPLength={6}
+                  otpType="number"
+                  className="flex justify-center gap-2 mb-4 otp-container"
+                  inputStyle={{
+                    width: "3rem",
+                    height: "3rem",
+                    border: "1px solid grey",
+                    borderRadius: "0.5rem",
+                    fontSize: "1.5rem",
+                    textAlign: "center",
+                  }}
+                />
+                {/* <button
                 onClick={onOTPVerify}
-                className="bg-emerald-600 w-full flex gap-1 items-center justify-center py-2.5 text-white rounded"
-              >
-                {loading && (
-                  <CgSpinner size={20} className="mt-1 animate-spin" />
-                )}
-                <span>Verify OTP</span>
-              </button>
-            </>
-          ) : (
-            <>
-              <div className="bg-white text-emerald-500 w-fit mx-auto p-4 rounded-full">
-                <BsTelephoneFill size={30} />
-              </div>
-              <label className="font-bold text-xl text-white text-center">
-                Verify your phone number
-              </label>
-              <PhoneInput country={"in"} value={ph} onChange={setPh} />
-              <button
+                className="bg-green-500 hover:bg-green-600 text-white font-semibold w-full py-3 rounded-lg transition-all"
+              > */}
+                <div
+                  onClick={onOTPVerify}
+                  className="relative text-center bg-gradient-to-r from-green-400 via-emerald-500 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-semibold w-full py-3 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+                >
+                  {loading ? (
+                    <CgSpinner size={20} className="animate-spin mx-auto" />
+                  ) : (
+                    "Verify OTP"
+                  )}
+                  {/* </button> */}
+                </div>
+                {/* <button
+                className="mt-4 text-indigo-500 hover:underline w-full text-center"
                 onClick={onSignup}
-                className="bg-emerald-600 w-full flex gap-1 items-center justify-center py-2.5 text-white rounded"
               >
-                {loading && (
-                  <CgSpinner size={20} className="mt-1 animate-spin" />
-                )}
-                <span>Send OTP</span>
-              </button>
-            </>
-          )}
-        </div>
-      )}
+                Resend Code
+              </button> */}
+              </>
+            ) : (
+              <>
+                <PhoneInput
+                  country={"in"}
+                  value={ph}
+                  onChange={setPh}
+                  inputStyle={{
+                    width: "100%",
+                    height: "3rem",
+                    borderRadius: "0.5rem",
+                    fontSize: "1rem",
+                  }}
+                  className="mb-4 poppins-regular"
+                />
+                <div
+                  onClick={onSignup}
+                  className="relative text-center bg-gradient-to-r from-green-400 via-emerald-500 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-semibold w-full py-3 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+                >
+                  {loading ? (
+                    <CgSpinner size={20} className="animate-spin mx-auto" />
+                  ) : (
+                    "Send OTP"
+                  )}
+                </div>
+              </>
+            )}
+          </div>
+        )}
+      </div>
     </section>
   );
 };

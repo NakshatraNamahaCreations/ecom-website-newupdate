@@ -138,7 +138,7 @@ const Login = () => {
                   onChange={setOtp}
                   OTPLength={6}
                   otpType="number"
-                  className="flex justify-center gap-2 mb-4"
+                  className="flex justify-center gap-2 mb-4 opt-container"
                   inputStyle={{
                     width: "3rem",
                     height: "3rem",
