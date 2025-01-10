@@ -309,7 +309,7 @@ body {
   transform: scale(1.2);
 }
 .footer {
-  --bg-gradient: linear-gradient(0deg, #000000 4.035%, #d0edf1 100%);
+  --bg-gradient: linear-gradient(0deg, grey 4.035%, #d0edf1 100%);
   --bg-overlay-color: transparent;
 
   background: var(--bg-gradient);

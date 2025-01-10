@@ -106,7 +106,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <div className="row footer">
+    <div className="row footer mt-4">
       <div className="poppins-regular text-center">
         © 2024 ProLeverage Technologies (OPC) Private Limited
       </div>
@@ -118,9 +118,18 @@ function Footer() {
         Contact Us: Ph no +916364532840, support@proleverage.io
       </div>
 
+      <Link to="/about" style={{ color: "black" }}>
+        <div
+          className="f-desc mt-2 poppins-regular text-center"
+          style={{ fontSize: "17px", color: "black" }}
+        >
+          About Us
+        </div>
+      </Link>
+
       <Link to="/privacy-policy" style={{ color: "black" }}>
         <div
-          className="f-desc mt-3 poppins-regular text-center"
+          className="f-desc mt-1 poppins-regular text-center"
           style={{ fontSize: "17px", color: "black" }}
         >
           Privacy policy
@@ -129,7 +138,7 @@ function Footer() {
 
       <Link to="/termsofuse" style={{ color: "black" }}>
         <div
-          className="f-desc poppins-regular text-center pt-2"
+          className="f-desc poppins-regular text-center pt-1"
           style={{ fontSize: "17px", color: "black" }}
         >
           Terms of use
