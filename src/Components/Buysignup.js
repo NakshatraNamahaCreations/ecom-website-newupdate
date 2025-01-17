@@ -63,11 +63,14 @@ function Buysignup() {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          height: "100vh",
           background: "linear-gradient(to bottom, #6a11cb, #2575fc)",
           fontFamily: "Poppins, sans-serif",
           color: "#4A4A4A",
+          height: "100vh", // Full viewport height
+          width: "100vw", // Full viewport width
+          margin: 0, // No margin
           padding: "0 10%",
+          overflow: "hidden", // Prevent overflow
         }}
       >
         <div style={{ width: "50%" }}>
@@ -222,7 +225,9 @@ function Buysignup() {
           </div>
         </div>
       </div>
+
       <div
+        className="mobile-tools"
         style={{
           display: "flex",
           flexDirection: "column",

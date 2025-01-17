@@ -218,6 +218,7 @@ function Signup() {
         </div>
       </div>
       <div
+        className="mobile-tools"
         style={{
           display: "flex",
           flexDirection: "column",
