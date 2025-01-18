@@ -29,6 +29,7 @@ import Buylogin from "./Components/Buylogin";
 import Privacy from "./Components/Privacy";
 import Terms from "./Components/Terms";
 import Refund from "./Components/Refund";
+import Phonepe from "./Components/Phonepe";
 
 function App() {
   return (
@@ -294,6 +295,17 @@ function App() {
               <Header />
               <Header1 />
               <Refund />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/phone"
+          element={
+            <>
+              <Header />
+              <Header1 />
+              <Phonepe />
               <Footer />
             </>
           }
