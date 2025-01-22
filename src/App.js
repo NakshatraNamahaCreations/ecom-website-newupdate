@@ -31,6 +31,7 @@ import Terms from "./Components/Terms";
 import Refund from "./Components/Refund";
 import Phonepe from "./Components/Phonepe";
 import Mobilefooter from "./Components/Mobilefooter";
+import Profile from "./Components/Profile";
 
 function App() {
   return (
@@ -136,6 +137,18 @@ function App() {
               <Header />
               <Header1 />
               <Asin />
+              <Mobilefooter />
+              {/* <Footer /> */}
+            </>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <>
+              <Header />
+              <Header1 />
+              <Profile />
               <Mobilefooter />
               {/* <Footer /> */}
             </>

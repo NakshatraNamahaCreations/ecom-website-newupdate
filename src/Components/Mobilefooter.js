@@ -23,7 +23,7 @@ function Mobilefooter() {
         className="d-flex justify-content-around align-items-center"
         style={{ padding: "10px 0" }}
       >
-        <Link to="/asin-code">
+        <Link to="/asin-code" style={{ textDecoration: "none" }}>
           <div className="text-center">
             <i
               className="fa-solid fa-toolbox"
@@ -46,7 +46,7 @@ function Mobilefooter() {
           </div>
         </Link>
 
-        <Link to="/home">
+        <Link to="/home" style={{ textDecoration: "none" }}>
           <div className="text-center">
             <i
               className="fa-solid fa-house"
@@ -70,7 +70,7 @@ function Mobilefooter() {
           </div>
         </Link>
 
-        <Link to="/chat">
+        <Link to="/chat" style={{ textDecoration: "none" }}>
           <div className="text-center">
             <i
               className="fa-brands fa-rocketchat"
@@ -94,27 +94,29 @@ function Mobilefooter() {
           </div>
         </Link>
 
-        <div className="text-center">
-          <i
-            className="fa-solid fa-user"
-            style={{
-              color: "white",
-              fontSize: "20px",
-              marginBottom: "5px",
-            }}
-          ></i>
+        <Link to="/profile" style={{ textDecoration: "none" }}>
+          <div className="text-center">
+            <i
+              className="fa-solid fa-user"
+              style={{
+                color: "white",
+                fontSize: "20px",
+                marginBottom: "5px",
+              }}
+            ></i>
 
-          <div
-            className="poppins-regular"
-            style={{
-              fontSize: "14px",
-              color: "white",
-              fontWeight: "bold",
-            }}
-          >
-            Profile
+            <div
+              className="poppins-regular"
+              style={{
+                fontSize: "14px",
+                color: "white",
+                fontWeight: "bold",
+              }}
+            >
+              Profile
+            </div>
           </div>
-        </div>
+        </Link>
       </div>
     </div>
   );

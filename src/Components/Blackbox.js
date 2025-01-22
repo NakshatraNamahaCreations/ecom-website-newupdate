@@ -383,9 +383,9 @@ function Blackbox() {
       </div>
 
       <div className="mobile-tools">
-        <Link to="/chat" className="chat-button-container">
+        {/* <Link to="/chat" className="chat-button-container">
           <i className="fa-brands fa-rocketchat chat-icon"></i>
-        </Link>
+        </Link> */}
       </div>
     </div>
   );
