@@ -148,6 +148,7 @@ function App() {
               <Header />
               <Header1 />
               <Product />
+              <Mobilefooter />
               {/* <Footer /> */}
             </>
           }

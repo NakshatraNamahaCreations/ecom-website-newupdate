@@ -973,9 +973,13 @@ const Asin = () => {
             <Link
               to="/asin-details"
               state={{ data, dailySales: dailySales }}
-              style={{ textDecoration: "none", color: "black" }}
+              style={{
+                textDecoration: "none",
+                color: "black",
+                marginBottom: "120px",
+              }}
             >
-              <div className="row mt-3" key={data.asin}>
+              <div className="row mt-3 mb-5" key={data.asin}>
                 <div className="col-2">
                   <img
                     src={data.product_photo}
@@ -1019,6 +1023,7 @@ const Asin = () => {
             alt="loading..."
             className="mt-3"
             // style={{ width: "100%", height: "100px" }}
+            style={{ marginBottom: "120px" }}
           />
         )}
 

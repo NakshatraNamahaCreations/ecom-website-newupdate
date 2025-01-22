@@ -1104,6 +1104,7 @@ const Product = () => {
                     cursor: "pointer",
                     width: "200px",
                     textAlign: "center",
+                    marginBottom: "120px",
                   }}
                 >
                   Show More
@@ -1124,6 +1125,7 @@ const Product = () => {
             alt="loading..."
             className="mt-3"
             // style={{ width: "100%", height: "100px" }}
+            style={{ marginBottom: "120px" }}
           />
         )}
 
