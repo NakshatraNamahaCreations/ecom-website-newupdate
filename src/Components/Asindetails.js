@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Asindetails() {
@@ -452,8 +452,29 @@ function Asindetails() {
 
   console.log("referealfee", referralFee);
 
+  const navigate = useNavigate();
+
+  const handleGoBack = () => {
+    navigate(-1); // Navigate to the previous page
+  };
+
   return (
     <div className="container">
+      <i
+        onClick={handleGoBack}
+        className="fa-solid fa-less-than mb-3 mt-4"
+        style={{
+          backgroundColor: "blue",
+          padding: "8px 10px",
+          color: "white",
+          borderRadius: "50px",
+          fontSize: "15px",
+          textAlign: "center",
+          marginBottom: "10px",
+          cursor: "pointer",
+        }}
+      ></i>
+
       <div className="row" style={{ justifyContent: "center" }}>
         <div className="col-12 col-md-8">
           <div

@@ -30,6 +30,7 @@ import Privacy from "./Components/Privacy";
 import Terms from "./Components/Terms";
 import Refund from "./Components/Refund";
 import Phonepe from "./Components/Phonepe";
+import Mobilefooter from "./Components/Mobilefooter";
 
 function App() {
   return (
@@ -42,7 +43,7 @@ function App() {
               <Header />
               <Header1 />
               <Home />
-              <Footer />
+              <Mobilefooter />
             </>
           }
         />
@@ -53,7 +54,7 @@ function App() {
               <Header />
               <Header1 />
               <About />
-              <Footer />
+              {/* <Footer /> */}
             </>
           }
         />
@@ -64,7 +65,7 @@ function App() {
               <Header />
               <Header1 />
               <Blogs />
-              <Footer />
+              {/* <Footer /> */}
             </>
           }
         />
@@ -75,7 +76,7 @@ function App() {
               <Header />
               <Header1 />
               <Courses />
-              <Footer />
+              {/* <Footer /> */}
             </>
           }
         />
@@ -86,7 +87,7 @@ function App() {
               <Header />
               <Header1 />
               <Tools />
-              <Footer />
+              {/* <Footer /> */}
             </>
           }
         />
@@ -113,7 +114,7 @@ function App() {
               <Header />
               <Header1 />
               <Coursesdetails />
-              <Footer />
+              {/* <Footer /> */}
             </>
           }
         />
@@ -124,7 +125,7 @@ function App() {
               <Header />
               <Header1 />
               <Content />
-              <Footer />
+              {/* <Footer /> */}
             </>
           }
         />
@@ -135,7 +136,8 @@ function App() {
               <Header />
               <Header1 />
               <Asin />
-              <Footer />
+              <Mobilefooter />
+              {/* <Footer /> */}
             </>
           }
         />
@@ -146,7 +148,7 @@ function App() {
               <Header />
               <Header1 />
               <Product />
-              <Footer />
+              {/* <Footer /> */}
             </>
           }
         />
@@ -157,7 +159,7 @@ function App() {
               <Header />
               <Header1 />
               <Asindetails />
-              <Footer />
+              {/* <Footer /> */}
             </>
           }
         />
@@ -168,7 +170,7 @@ function App() {
               <Header />
               <Header1 />
               <Productdetails />
-              <Footer />
+              {/* <Footer /> */}
             </>
           }
         />
@@ -180,7 +182,7 @@ function App() {
               <Header />
               <Header1 />
               <Plan />
-              <Footer />
+              {/* <Footer /> */}
             </>
           }
         />
@@ -191,7 +193,7 @@ function App() {
               <Header />
               <Header1 />
               <Blackbox />
-              <Footer />
+              {/* <Footer /> */}
             </>
           }
         />
@@ -202,7 +204,7 @@ function App() {
               <Header />
               <Header1 />
               <Blackboxdetails />
-              <Footer />
+              {/* <Footer /> */}
             </>
           }
         />
@@ -237,7 +239,7 @@ function App() {
               <Header />
               <Header1 />
               <Notification />
-              <Footer />
+              {/* <Footer /> */}
             </>
           }
         />
@@ -272,7 +274,7 @@ function App() {
               <Header />
               <Header1 />
               <Privacy />
-              <Footer />
+              {/* <Footer /> */}
             </>
           }
         />
@@ -283,7 +285,7 @@ function App() {
               <Header />
               <Header1 />
               <Terms />
-              <Footer />
+              {/* <Footer /> */}
             </>
           }
         />
@@ -295,7 +297,7 @@ function App() {
               <Header />
               <Header1 />
               <Refund />
-              <Footer />
+              {/* <Footer /> */}
             </>
           }
         />

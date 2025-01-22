@@ -120,8 +120,27 @@ function Blackbox() {
 
   console.log("categories", categories);
 
+  const handleGoBack = () => {
+    navigate(-1); // Navigate to the previous page
+  };
+
   return (
     <div className="container mt-3">
+      <i
+        onClick={handleGoBack}
+        className="fa-solid fa-less-than mb-3"
+        style={{
+          backgroundColor: "blue",
+          padding: "8px 10px",
+          color: "white",
+          borderRadius: "50px",
+          fontSize: "15px",
+          textAlign: "center",
+          marginBottom: "10px",
+          cursor: "pointer",
+        }}
+      ></i>
+
       <div
         className="row mt-1 mb-3 web-tools"
         style={{ justifyContent: "center" }}
@@ -308,14 +327,18 @@ function Blackbox() {
             <input
               type="number"
               className="form-control"
-              placeholder="Min"
+              placeholder={`Min ${
+                country === "IN" ? "₹" : country === "US" ? "$" : ""
+              }`}
               value={price.min}
               onChange={(e) => setPrice({ ...price, min: e.target.value })}
             />
             <input
               type="number"
               className="form-control"
-              placeholder="Max"
+              placeholder={`Max ${
+                country === "IN" ? "₹" : country === "US" ? "$" : ""
+              }`}
               value={price.max}
               onChange={(e) => setPrice({ ...price, max: e.target.value })}
             />

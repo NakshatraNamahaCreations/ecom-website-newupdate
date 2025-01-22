@@ -226,20 +226,20 @@ function Buysignup() {
         </div>
       </div>
 
-      <div
-        className="mobile-tools"
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
-          padding: "20px",
-          background: "linear-gradient(to bottom, #6a11cb, #2575fc)",
-          fontFamily: "Poppins, sans-serif",
-        }}
-      >
-        <div className="mobile-tools" style={{}}>
+      <div className="mobile-tools">
+        <div
+          className=""
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+            padding: "20px",
+            background: "linear-gradient(to bottom, #6a11cb, #2575fc)",
+            fontFamily: "Poppins, sans-serif",
+          }}
+        >
           <div
             style={{
               width: "100%",

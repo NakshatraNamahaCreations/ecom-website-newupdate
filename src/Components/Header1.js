@@ -1,8 +1,10 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 function Header() {
   const location = useLocation();
+  const [notification, setnotification] = useState([]);
 
   const user = localStorage.getItem("user");
   const token = localStorage.getItem("userToken");
@@ -18,11 +20,28 @@ function Header() {
     alert("Account Deleted Successfully");
   };
 
+  useEffect(() => {
+    getallnotification();
+  }, []);
+
+  const getallnotification = async () => {
+    try {
+      const response = await axios.get(
+        "https://api.proleverageadmin.in/api/broadcasting/getallbroadcast"
+      );
+      if (response.status === 200) {
+        setnotification(response.data.data);
+      }
+    } catch (error) {
+      console.error("Error fetching keyword data:", error);
+    }
+  };
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg mobile_header navbar-light bg-light">
         <div className="container-fluid">
-          <a className="navbar-brand" href="/">
+          <a className="navbar-brand" href="/asin-code">
             <img
               src="./images/plogo.png"
               alt="loading...."
@@ -34,7 +53,7 @@ function Header() {
           </a>
 
           <ul className="navbar-nav me-0 mb-2 mb-lg-0">
-            <li className="nav-item dropdown">
+            {/* <li className="nav-item dropdown">
               <a
                 className="poppins-regular nav-link dropdown-toggle"
                 href="#"
@@ -59,6 +78,20 @@ function Header() {
                   </div>
                 </li>
               </ul>
+            </li> */}
+
+            <li>
+              <Link
+                className="nav-link poppins-regular"
+                style={{ fontSize: "14px" }}
+                to="/notification"
+              >
+                <span className="bell">{notification.length}</span>
+                <i
+                  className="fa-solid fa-bell"
+                  style={{ fontSize: "25px" }}
+                ></i>
+              </Link>
             </li>
           </ul>
         </div>

@@ -459,9 +459,27 @@ const Product = () => {
     });
   };
 
+  const handleGoBack = () => {
+    navigate(-1); // Navigate to the previous page
+  };
+
   return (
     <div className="container">
-      <div className="container-fluid d-flex align-items-center web-tools mt-5">
+      <i
+        onClick={handleGoBack}
+        className="fa-solid fa-less-than mb-3 mt-4"
+        style={{
+          backgroundColor: "blue",
+          padding: "8px 10px",
+          color: "white",
+          borderRadius: "50px",
+          fontSize: "15px",
+          textAlign: "center",
+          marginBottom: "10px",
+        }}
+      ></i>
+
+      <div className="container-fluid d-flex align-items-center web-tools mt-2">
         <div className="row w-100  rounded-4 overflow-hidden bg-white web-tools">
           {/* Left Panel */}
           <div className="col-md-7 p-5">

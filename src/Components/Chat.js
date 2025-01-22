@@ -6,6 +6,7 @@ import Modal from "react-bootstrap/Modal";
 import { Button } from "react-bootstrap";
 
 import io from "socket.io-client";
+import { useNavigate } from "react-router-dom";
 
 const socket = io("https://api.proleverageadmin.in", {
   transports: ["websocket", "polling"],
@@ -343,8 +344,29 @@ const ChatApp = () => {
     setFilteredUsers(filtered);
   };
 
+  const navigate = useNavigate();
+
+  const handleGoBack = () => {
+    navigate(-1); // Navigate to the previous page
+  };
+
   return (
     <>
+      <i
+        onClick={handleGoBack}
+        className="fa-solid fa-less-than mb-3 mt-4"
+        style={{
+          backgroundColor: "blue",
+          padding: "8px 10px",
+          color: "white",
+          borderRadius: "50px",
+          fontSize: "15px",
+          textAlign: "center",
+          marginBottom: "10px",
+          cursor: "pointer",
+          marginLeft: "20px",
+        }}
+      ></i>
       <div className="chat-container web-tools">
         <div className="chat">
           <div className="chat-sidebar">
@@ -430,7 +452,7 @@ const ChatApp = () => {
         </div>
       </div>
 
-      <div className="chat-container mobile-tools">
+      <div className="chat-container mobile-tools m-3">
         {selectedChat ? (
           // Chat View
           <div className="chat-main">

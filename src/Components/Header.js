@@ -43,7 +43,7 @@ function Header() {
       <nav className="navbar navbar-expand-lg web-header navbar-light bg-light">
         <div className="container-fluid">
           {/* Logo */}
-          <a className="navbar-brand" href="/">
+          <a className="navbar-brand" href="/asin-code">
             <img
               src="./images/plogo.png"
               alt="loading...."

@@ -84,7 +84,7 @@ function Home() {
             <div className="poppins-black mt-3 mb-3">Courses and Services</div>
 
             <div className="row mb-4">
-              <div className="col-md-6">
+              <div className="col-md-6 mb-3">
                 <div
                   className="d-flex"
                   style={{
@@ -147,7 +147,7 @@ function Home() {
                 </div>
               </div>
 
-              <div className="col-md-6">
+              <div className="col-md-6 mb-3">
                 <div
                   className="d-flex"
                   style={{

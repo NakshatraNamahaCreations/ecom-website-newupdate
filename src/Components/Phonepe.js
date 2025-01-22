@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-import phonepe from "../../image/phonepe.png";
 
 const Phonepe = () => {
   const [loading2, setLoading2] = useState(false);
@@ -40,7 +39,6 @@ const Phonepe = () => {
   return (
     <div className="main">
       <div className="center">
-        <img width={300} src={phonepe} alt="PhonePe" />
         <h2 className="fs-4 mt-2">
           <span className="text-danger fw-bold">LIVE</span> Payment Integration
         </h2>

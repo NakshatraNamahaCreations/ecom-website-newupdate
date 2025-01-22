@@ -472,8 +472,27 @@ function Blackboxdetails() {
     }
   };
 
+  const handleGoBack = () => {
+    navigate(-1); // Navigate to the previous page
+  };
+
   return (
     <div className="container">
+      <i
+        onClick={handleGoBack}
+        className="fa-solid fa-less-than mb-3 mt-3"
+        style={{
+          backgroundColor: "blue",
+          padding: "8px 10px",
+          color: "white",
+          borderRadius: "50px",
+          fontSize: "15px",
+          textAlign: "center",
+          marginBottom: "10px",
+          cursor: "poiter",
+        }}
+      ></i>
+
       <div className="row mt-3 mb-3" style={{ justifyContent: "center" }}>
         <div className="col-md-8">
           {loading ? (
