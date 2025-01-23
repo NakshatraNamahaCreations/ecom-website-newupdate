@@ -140,7 +140,7 @@ const Buylogin = () => {
                   onChange={setOtp}
                   OTPLength={6}
                   otpType="number"
-                  className="flex justify-center gap-2 mb-4 otp-container"
+                  className="flex justify-center gap-2 mb-4 opt-container"
                   inputStyle={{
                     width: "3rem",
                     height: "3rem",
@@ -186,6 +186,7 @@ const Buylogin = () => {
                   }}
                   className="mb-4 poppins-regular"
                 />
+
                 <div
                   onClick={onSignup}
                   className="relative text-center bg-gradient-to-r from-green-400 via-emerald-500 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-semibold w-full py-3 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"

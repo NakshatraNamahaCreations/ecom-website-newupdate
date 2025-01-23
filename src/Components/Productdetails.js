@@ -450,16 +450,25 @@ function Productdetails() {
     <div className="container">
       <i
         onClick={handleGoBack}
-        className="fa-solid fa-less-than mb-3 mt-4"
+        className="fa-solid fa-arrow-left-long mb-3 mt-4"
         style={{
-          backgroundColor: "blue",
-          padding: "8px 10px",
+          backgroundColor: "#007bff",
+          padding: "10px",
           color: "white",
-          borderRadius: "50px",
-          fontSize: "15px",
+          borderRadius: "50%",
+          fontSize: "20px",
           textAlign: "center",
-          marginBottom: "10px",
           cursor: "pointer",
+          boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+          transition: "all 0.3s ease",
+        }}
+        onMouseOver={(e) => {
+          e.target.style.backgroundColor = "#0056b3";
+          e.target.style.transform = "scale(1.1)";
+        }}
+        onMouseOut={(e) => {
+          e.target.style.backgroundColor = "#007bff";
+          e.target.style.transform = "scale(1)";
         }}
       ></i>
 
