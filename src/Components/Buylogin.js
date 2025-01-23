@@ -188,7 +188,8 @@ const Buylogin = () => {
                 />
 
                 <div
-                  onClick={onSignup}
+                  // onClick={onSignup}
+                  onClick={VerifyFromServer}
                   className="relative text-center bg-gradient-to-r from-green-400 via-emerald-500 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-semibold w-full py-3 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
                 >
                   {loading ? (
