@@ -1,9 +1,28 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
   const [bannerdata, setbannerdata] = useState([]);
+  const navigate = useNavigate();
+  const [userData, setUserdata] = useState(null);
+  useEffect(() => {
+    // Fetch the user data from localStorage
+    const userdata = localStorage.getItem("user");
+
+    if (userdata) {
+      try {
+        const parsedUser = JSON.parse(userdata);
+        setUserdata(parsedUser); // Update state with user data
+      } catch (error) {
+        console.error("Error parsing user data from localStorage:", error);
+      }
+    } else {
+      console.log("No user data found in localStorage.");
+      navigate("/login");
+    }
+  }, [navigate]);
 
   useEffect(() => {
     getallbanner();

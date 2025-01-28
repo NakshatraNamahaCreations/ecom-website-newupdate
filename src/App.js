@@ -32,6 +32,7 @@ import Refund from "./Components/Refund";
 import Phonepe from "./Components/Phonepe";
 import Mobilefooter from "./Components/Mobilefooter";
 import Profile from "./Components/Profile";
+import PrivateRoute from "./Components/PrivateRoute";
 
 function App() {
   return (
@@ -92,6 +93,7 @@ function App() {
             </>
           }
         />
+        {/* <Route element={<PrivateRoute />}> */}
         <Route
           path="/login"
           element={
@@ -100,6 +102,8 @@ function App() {
             </>
           }
         />
+        {/* </Route> */}
+
         <Route
           path="/signup"
           element={

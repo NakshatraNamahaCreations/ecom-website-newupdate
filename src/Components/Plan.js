@@ -25,7 +25,7 @@ const Plan = () => {
       }
     } else {
       console.log("No user data found in localStorage.");
-      navigate("/");
+      navigate("/login");
     }
   }, [navigate]);
 

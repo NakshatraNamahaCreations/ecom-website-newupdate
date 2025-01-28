@@ -112,6 +112,7 @@ function Signup() {
                 ></i>
                 <input
                   type="text"
+                  className="col-md-12"
                   placeholder="Enter Your Name"
                   value={username}
                   onChange={(e) => setuserName(e.target.value)}
@@ -217,7 +218,6 @@ function Signup() {
           </div>
         </div>
       </div>
-
       <div className="mobile-tools">
         <div
           className=""

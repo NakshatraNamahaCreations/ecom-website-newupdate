@@ -30,6 +30,7 @@ const Product = () => {
   const [randomGeneratedNumber, setRandomGeneratedNumber] = useState(0);
   const [isAsinExists, setIsAsinExists] = useState(false);
   const [itemsToShow, setItemsToShow] = useState(10);
+
   const handleShowMore = () => {
     setItemsToShow((prev) => prev + 10);
   };
@@ -47,8 +48,9 @@ const Product = () => {
       }
     } else {
       console.log("No user data found in localStorage.");
+      navigate("/login");
     }
-  }, []);
+  }, [navigate]);
 
   console.log("userData", userData);
 

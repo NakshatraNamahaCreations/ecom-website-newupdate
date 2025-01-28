@@ -34,7 +34,7 @@ const ChatApp = () => {
   const [password, setPassword] = useState("");
   const [userID, setUserID] = useState(null);
   const [loggedInUserName, setLoggedInUserName] = useState("");
-
+  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [groups, setGroups] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
@@ -64,8 +64,9 @@ const ChatApp = () => {
       }
     } else {
       console.log("No user data found in localStorage.");
+      navigate("/login");
     }
-  }, []);
+  }, [navigate]);
 
   console.log("userData", userData);
 
@@ -343,8 +344,6 @@ const ChatApp = () => {
     );
     setFilteredUsers(filtered);
   };
-
-  const navigate = useNavigate();
 
   const handleGoBack = () => {
     navigate(-1); // Navigate to the previous page

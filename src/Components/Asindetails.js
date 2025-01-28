@@ -4,6 +4,7 @@ import axios from "axios";
 
 function Asindetails() {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const data = location.state?.data;
   const dailySales = location.state?.dailySales;
@@ -451,8 +452,6 @@ function Asindetails() {
   };
 
   console.log("referealfee", referralFee);
-
-  const navigate = useNavigate();
 
   const handleGoBack = () => {
     navigate(-1); // Navigate to the previous page

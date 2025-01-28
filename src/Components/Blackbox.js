@@ -31,8 +31,9 @@ function Blackbox() {
       }
     } else {
       console.log("No user data found in localStorage.");
+      navigate("/login");
     }
-  }, []);
+  }, [navigate]);
 
   console.log("userData", userData);
 

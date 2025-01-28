@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 import Header1 from "./Header1";
 
@@ -24,6 +24,7 @@ const Asin = () => {
   const [isAsinExists, setIsAsinExists] = useState(false);
   const [alluserdata, setalluserdata] = useState([]);
   const [userData, setUserdata] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const userdata = localStorage.getItem("user");
@@ -37,8 +38,9 @@ const Asin = () => {
       }
     } else {
       console.log("No user data found in localStorage.");
+      navigate("/login");
     }
-  }, []);
+  }, [navigate]);
 
   console.log("userData", userData);
 

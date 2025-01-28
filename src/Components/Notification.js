@@ -1,8 +1,27 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Notification() {
   const [notification, setnotification] = useState([]);
+  const [userData, setUserdata] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const userdata = localStorage.getItem("user");
+
+    if (userdata) {
+      try {
+        const parsedUser = JSON.parse(userdata);
+        setUserdata(parsedUser);
+      } catch (error) {
+        console.error("Error parsing user data from localStorage:", error);
+      }
+    } else {
+      console.log("No user data found in localStorage.");
+      navigate("/login");
+    }
+  }, [navigate]);
 
   useEffect(() => {
     getallnotification();
