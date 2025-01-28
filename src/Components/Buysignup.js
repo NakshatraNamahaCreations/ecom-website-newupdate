@@ -259,89 +259,74 @@ function Buysignup() {
             </div>
             <form onSubmit={submit}>
               <div style={{ marginBottom: "15px" }}>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    border: "1px solid #ccc",
-                    borderRadius: "5px",
-                    padding: "10px",
-                  }}
-                >
-                  <i
+                {/* <i
                     className="fas fa-user"
                     style={{ marginRight: "10px", color: "#6a11cb" }}
-                  ></i>
-                  <input
-                    type="text"
-                    placeholder="Enter Your Name"
-                    value={username}
-                    onChange={(e) => setuserName(e.target.value)}
-                    style={{
-                      border: "none",
-                      outline: "none",
-                      flex: 1,
-                      fontSize: "16px",
-                    }}
-                  />
-                </div>
-              </div>
-              <div style={{ marginBottom: "15px" }}>
-                <div
+                  ></i> */}
+                <input
+                  type="text"
+                  placeholder="Enter Your Name"
+                  value={username}
+                  onChange={(e) => setuserName(e.target.value)}
                   style={{
                     display: "flex",
                     alignItems: "center",
                     border: "1px solid #ccc",
                     borderRadius: "5px",
                     padding: "10px",
+                    width: "100%",
+                    paddingLeft: "15px",
+                    outline: "none",
                   }}
-                >
-                  <i
+                />
+              </div>
+
+              <div style={{ marginBottom: "15px" }}>
+                {/* <i
                     className="fas fa-envelope"
                     style={{ marginRight: "10px", color: "#6a11cb" }}
-                  ></i>
-                  <input
-                    type="email"
-                    placeholder="Enter Your Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    style={{
-                      border: "none",
-                      outline: "none",
-                      flex: 1,
-                      fontSize: "16px",
-                    }}
-                  />
-                </div>
-              </div>
-              <div style={{ marginBottom: "15px" }}>
-                <div
+                  ></i> */}
+                <input
+                  type="email"
+                  placeholder="Enter Your Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   style={{
                     display: "flex",
                     alignItems: "center",
                     border: "1px solid #ccc",
                     borderRadius: "5px",
                     padding: "10px",
+                    width: "100%",
+                    paddingLeft: "15px",
+                    outline: "none",
                   }}
-                >
-                  <i
+                />
+              </div>
+
+              <div style={{ marginBottom: "15px" }}>
+                {/* <i
                     className="fas fa-phone"
                     style={{ marginRight: "10px", color: "#6a11cb" }}
-                  ></i>
-                  <input
-                    type="text"
-                    placeholder="Enter Your Phone Number"
-                    value={phoneNumber}
-                    onChange={(e) => setphoneNumber(e.target.value)}
-                    style={{
-                      border: "none",
-                      outline: "none",
-                      flex: 1,
-                      fontSize: "16px",
-                    }}
-                  />
-                </div>
+                  ></i> */}
+                <input
+                  type="text"
+                  placeholder="Enter Your Phone Number"
+                  value={phoneNumber}
+                  onChange={(e) => setphoneNumber(e.target.value)}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    border: "1px solid #ccc",
+                    borderRadius: "5px",
+                    padding: "10px",
+                    width: "100%",
+                    paddingLeft: "15px",
+                    outline: "none",
+                  }}
+                />
               </div>
+
               <button
                 type="submit"
                 style={{
