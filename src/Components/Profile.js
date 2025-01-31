@@ -105,7 +105,7 @@ function Profile() {
               className="poppins-semibold text-center mx-3"
               style={{ color: "black" }}
             >
-              Plans
+              Subscriptions
             </div>
           </div>
         </div>

@@ -17,13 +17,9 @@ const Phonepe = () => {
     setLoading2(true);
 
     try {
-      const res = await axios.post(
-        "https://api.proleverageadmin.in/api/payment",
-        data
-      );
+      const res = await axios.post("http://localhost:8082/api/payment", data);
 
       if (res.data.success && res.data.paymentUrl) {
-        // Redirect to PhonePe payment page
         window.location.href = res.data.paymentUrl;
       } else {
         alert("Failed to initiate payment. Please try again.");

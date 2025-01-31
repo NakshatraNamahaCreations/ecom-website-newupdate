@@ -214,6 +214,20 @@ function Header() {
               </Link>
             </li>
 
+            <li
+              className={`nav-item ${
+                location.pathname === "/Plans" ? "active" : ""
+              }`}
+            >
+              <Link
+                className="nav-link poppins-regular"
+                style={{ fontSize: "14px" }}
+                to="/Plans"
+              >
+                Subscriptions
+              </Link>
+            </li>
+
             {/* User Profile Dropdown */}
             <li className="nav-item dropdown">
               <a

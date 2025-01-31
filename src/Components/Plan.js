@@ -35,7 +35,7 @@ const Plan = () => {
   const fetchPaymentKeys = async () => {
     try {
       const response = await axios.get(
-        "https://api.proleverageadmin.in/api/paymentkey/getAllreazorpaypayment"
+        "http://localhost:8082/api/paymentkey/getAllreazorpaypayment"
       );
       if (response.status === 200) {
         setPaymentKeys({
@@ -59,7 +59,7 @@ const Plan = () => {
   const getAllPlans = async () => {
     try {
       const response = await axios.get(
-        "https://api.proleverageadmin.in/api/plans/getallplan"
+        "http://localhost:8082/api/plans/getallplan"
       );
       setPlandata(response.data.data);
     } catch (error) {
@@ -84,26 +84,6 @@ const Plan = () => {
     });
   };
 
-  // const createOrder = async (price) => {
-  //   try {
-  //     const response = await axios.post(
-  //       "https://api.proleverageadmin.in/api/payment/orders",
-  //       {
-  //         amount: price,
-  //         currency: "INR",
-  //         userId: "676ceb42a70e449880e33c34",
-  //       }
-  //     );
-  //     setOrderId(response.data.orderId);
-  //     return response.data.orderId;
-  //   } catch (error) {
-  //     console.error("Error creating Razorpay order:", error);
-  //     alert("Failed to create order. Please try again.");
-  //     return null;
-  //   }
-  // };
-
-  // Handle Payment
   const handlePayment1 = async (planId, price) => {
     const isScriptLoaded = await loadRazorpayScript();
 
@@ -114,8 +94,8 @@ const Plan = () => {
 
     try {
       const orderResponse = await axios.post(
-        "https://api.proleverageadmin.in/api/payment/orders",
-        { amount: price, userId: userData?._id }
+        "http://localhost:8082/api/payment/orders",
+        { amount: price, userId: "679b03823b746307884d70ba", planId: planId }
       );
 
       const options = {
@@ -128,8 +108,8 @@ const Plan = () => {
         handler: async (response) => {
           try {
             const verifyResponse = await axios.get(
-              `https://api.proleverageadmin.in/api/payment/payment/${response.razorpay_payment_id}`,
-              { params: { userId: userData?._id, planId } }
+              `http://localhost:8082/api/payment/payment/${response.razorpay_payment_id}`,
+              { params: { userId: "679b03823b746307884d70ba", planId } }
             );
             if (verifyResponse.status === 200) {
               alert("Payment Successful!");
@@ -156,6 +136,41 @@ const Plan = () => {
     }
   };
 
+  // const handlePhonePePayment = async (planId, price) => {
+  //   try {
+  //     // Ensure user data exists
+  //     if (!userData?._id) {
+  //       alert("User not logged in. Please log in to continue.");
+  //       return;
+  //     }
+
+  //     // Generate a unique transaction ID
+  //     const transactionId = `TXN_${Date.now()}`;
+
+  //     // Initiate payment request to backend
+  //     const response = await axios.post(
+  //       "https://api.proleverageadmin.in/api/payment/phonepe",
+  //       {
+  //         transactionId,
+  //         MUID: userData._id,
+  //         name: userData.name,
+  //         amount: price,
+  //         number: userData.phone || "9943740866", // Ensure phone number is available
+  //       }
+  //     );
+
+  //     // Redirect user to PhonePe payment page
+  //     if (response.data.success) {
+  //       window.location.href = response.data.paymentUrl; // Redirects to PhonePe
+  //     } else {
+  //       alert("Payment initiation failed. Try again.");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error initiating PhonePe payment:", error);
+  //     alert("Failed to start payment.");
+  //   }
+  // };
+
   return (
     <div className="pricingSection">
       {plandata.map((plan, index) => (
@@ -173,6 +188,9 @@ const Plan = () => {
             {plan.searchCount} Searches
           </p>
 
+          <p className="searches poppins-regular" style={{ color: "green" }}>
+            {plan.priceDescription}
+          </p>
           <button
             className="button poppins-medium"
             onClick={() => handlePayment1(plan._id, plan.price)}
