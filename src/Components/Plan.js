@@ -18,6 +18,7 @@ const Plan = () => {
   const [searchvalue, setsearchvalue] = useState("");
   const [discountedPrice, setDiscountedPrice] = useState(selectdata?.price);
   const [errorMessage, setErrorMessage] = useState(""); // Error message state
+  const [usedCoupons, setUsedCoupons] = useState([]);
 
   const [show, setShow] = useState(false);
 
@@ -48,6 +49,28 @@ const Plan = () => {
       navigate("/login");
     }
   }, [navigate]);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get(
+          `https://api.proleverageadmin.in/api/users/getUserDetails/${userData?._id}`
+        );
+
+        if (response.status === 200) {
+          setUsedCoupons(response.data.usedCoupons || []);
+        }
+      } catch (error) {
+        console.error("Error fetching user details:", error);
+      }
+    };
+
+    if (userData?._id) {
+      fetchUserData();
+    }
+  }, [userData]);
+
+  console.log("usedCoupons", usedCoupons);
 
   console.log("userData", userData);
 
@@ -142,7 +165,13 @@ const Plan = () => {
           try {
             const verifyResponse = await axios.get(
               `https://api.proleverageadmin.in/api/payment/payment/${response.razorpay_payment_id}`,
-              { params: { userId: userData?._id, planId } }
+              {
+                params: {
+                  userId: userData?._id,
+                  planId,
+                  couponCode: searchvalue,
+                },
+              }
             );
             if (verifyResponse.status === 200) {
               alert("Payment Successful!");
@@ -169,21 +198,45 @@ const Plan = () => {
     }
   };
 
+  // const applyCoupon = () => {
+  //   const foundCoupon = allcoupondata.find(
+  //     (coupon) => coupon.couponCode === searchvalue
+  //   );
+
+  //   if (foundCoupon) {
+  //     const discountAmount = (selectdata?.price * foundCoupon.discount) / 100;
+  //     const finalPrice = selectdata?.price - discountAmount;
+
+  //     setDiscountedPrice(finalPrice.toFixed(2));
+  //     setErrorMessage("");
+  //   } else {
+  //     setErrorMessage("❌ Invalid Coupon Code");
+  //     setDiscountedPrice(selectdata?.price);
+  //   }
+  // };
+
   const applyCoupon = () => {
+    // Check if user has already used this coupon
+    if (usedCoupons.includes(searchvalue)) {
+      setErrorMessage("❌ Coupon Code Already Used");
+      setDiscountedPrice(selectdata?.price); // Reset price
+      return;
+    }
+
+    // Find if the coupon exists in available coupons
     const foundCoupon = allcoupondata.find(
       (coupon) => coupon.couponCode === searchvalue
     );
 
     if (foundCoupon) {
-      // Apply discount calculation
       const discountAmount = (selectdata?.price * foundCoupon.discount) / 100;
       const finalPrice = selectdata?.price - discountAmount;
 
-      setDiscountedPrice(finalPrice.toFixed(2)); // Round to 2 decimal places
+      setDiscountedPrice(finalPrice.toFixed(2));
       setErrorMessage(""); // Clear error message
     } else {
-      setErrorMessage("❌ Invalid Coupon Code"); // Show error
-      setDiscountedPrice(selectdata?.price); // Reset to original price
+      setErrorMessage("❌ Invalid Coupon Code");
+      setDiscountedPrice(selectdata?.price);
     }
   };
 
