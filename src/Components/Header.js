@@ -18,7 +18,7 @@ function Header() {
   const handleremove = () => {
     localStorage.removeItem("user");
     window.location.href = "/login";
-    alert("logout successfull");
+    // alert("logout successfull");
   };
 
   useEffect(() => {

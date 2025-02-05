@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { toast, Toaster } from "react-hot-toast";
 
 function Signup() {
   const [username, setuserName] = useState("");
@@ -34,7 +35,7 @@ function Signup() {
         localStorage.setItem("userToken", res.data.token);
         localStorage.setItem("user", JSON.stringify(res.data.user));
         window.location.assign("/login");
-        alert("Registered successfully");
+        toast.success("Registered successfully");
         setuserName("");
         setEmail("");
         setPassword("");
@@ -42,10 +43,10 @@ function Signup() {
       }
     } catch (error) {
       if (error.response && error.response.data && error.response.data.error) {
-        alert(error.response.data.error);
+        toast.success(error.response.data.error);
       } else {
         console.log("An unexpected error occurred:", error.message);
-        alert("Something went wrong. Please try again later.");
+        toast.success("Something went wrong. Please try again later.");
       }
     }
   };

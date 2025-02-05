@@ -465,6 +465,8 @@ const Product = () => {
     navigate(-1); // Navigate to the previous page
   };
 
+  const remainingcount = alluserdata.searchLimit - alluserdata.searchcount;
+
   return (
     <div className="container">
       <i
@@ -527,14 +529,14 @@ const Product = () => {
                   className="poppins-regular"
                   style={{ fontSize: "14px", color: "black" }}
                 >
-                  Search Count: {alluserdata.searchcount}
+                  Remaining Count: {remainingcount}
                 </p>
-                <p
+                {/* <p
                   className="poppins-regular"
                   style={{ fontSize: "14px", color: "black" }}
                 >
                   Search Limit: {alluserdata.searchLimit}
-                </p>
+                </p> */}
               </div>
             )}
 
@@ -926,7 +928,8 @@ const Product = () => {
                   fontSize: "14px",
                 }}
               >
-                {alluserdata.searchcount}/{alluserdata.searchLimit}
+                {/* {alluserdata.searchcount}/{alluserdata.searchLimit} */}
+                Remaining Count: {remainingcount}
               </p>
 
               <div

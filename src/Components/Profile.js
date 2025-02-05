@@ -25,7 +25,7 @@ function Profile() {
   const handleremove = () => {
     localStorage.removeItem("user");
     window.location.href = "/login";
-    alert("logout successfull");
+    // alert("logout successfull");
   };
 
   return (

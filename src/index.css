@@ -2062,3 +2062,40 @@ select.form-select:focus {
 .accordion-header.active .icon {
   transform: rotate(180deg);
 }
+.plan-details p {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Coupon Input & Apply Button */
+.apply-coupon {
+  margin-top: 5px;
+  gap: 10px;
+}
+
+.coupon-input {
+  flex-grow: 1;
+  height: 45px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 14px;
+}
+
+/* Buttons */
+.apply-btn {
+  height: 45px;
+  font-size: 14px;
+  padding: 0 15px;
+}
+
+.buy-now-btn {
+  background-color: #007bff;
+  border: none;
+  font-size: 16px;
+  padding: 10px 20px;
+}
+.buy-now-btn:hover {
+  background-color: #0056b3;
+}

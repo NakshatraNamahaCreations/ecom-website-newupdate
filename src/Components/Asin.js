@@ -376,220 +376,10 @@ const Asin = () => {
     });
   };
 
+  const remainingcount = alluserdata.searchLimit - alluserdata.searchcount;
+
   return (
     <div className="container">
-      {/* <div className="row justify-content-center web-tools">
-        <div className="col-md-12">
-          <div className="row">
-            <div className="row mt-3 mb-3" style={{ justifyContent: "center" }}>
-              <div className="col-md-2">
-                <div
-                  className="poppins-regular"
-                  style={{
-                    backgroundColor: "darkblue",
-                    color: "white",
-                    textAlign: "center",
-                    padding: "10px",
-                    borderRadius: "5px",
-                    fontSize: "14px",
-                  }}
-                >
-                  ASIN/Product
-                </div>
-              </div>
-
-              <div className="col-md-2">
-                <Link to="/product-search" style={{ textDecoration: "none" }}>
-                  <div
-                    className="poppins-regular"
-                    style={{
-                      // backgroundColor: "darkblue",
-                      border: "1px solid darkblue",
-                      color: "black",
-                      textAlign: "center",
-                      padding: "10px",
-                      borderRadius: "5px",
-                      fontSize: "14px",
-                    }}
-                  >
-                    Keyword
-                  </div>
-                </Link>
-              </div>
-
-              <div className="col-md-2">
-                <Link to="/black-box" style={{ textDecoration: "none" }}>
-                  <div
-                    className="poppins-regular"
-                    style={{
-                      // backgroundColor: "darkblue",
-                      border: "1px solid darkblue",
-                      color: "black",
-                      textAlign: "center",
-                      padding: "10px",
-                      borderRadius: "5px",
-                      fontSize: "14px",
-                    }}
-                  >
-                    Blackbox
-                  </div>
-                </Link>
-              </div>
-            </div>
-
-            <div className="row" style={{ justifyContent: "center" }}>
-              <div className=" col-md-10" style={{ justifyContent: "center" }}>
-                <div className="mb-3 mt-3">
-                  {alluserdata ? (
-                    <>
-                      <p
-                        className="user-info poppins-regular"
-                        style={{ color: "black" }}
-                      >
-                        <strong>Search Count:</strong> {alluserdata.searchcount}
-                      </p>
-                      <p
-                        className="user-info poppins-regular"
-                        style={{ color: "black" }}
-                      >
-                        <strong>Search Limit:</strong> {alluserdata.searchLimit}
-                      </p>
-                    </>
-                  ) : (
-                    ""
-                  )}
-                </div>
-                <h5
-                  className="poppins-medium"
-                  style={{
-                    fontSize: "15px",
-                    color: "darkblue",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Search by ASIN
-                </h5>
-                <div className="row mt-3 mb-3">
-                  <div className="col-md-12">
-                    <div className="custom-select-container">
-                      <select
-                        className="form-select custom-select"
-                        value={country}
-                        onChange={(e) => setCountry(e.target.value)}
-                      >
-                        <option value="IN" className="flag-option">
-                          amazon.in
-                        </option>
-                        <option value="US" className="flag-option">
-                          amazon.com
-                        </option>
-                      </select>
-                      <div className="flag-container">
-                        {country === "IN" && (
-                          <img
-                            src="https://flagcdn.com/w40/in.png"
-                            alt="India Flag"
-                            className="flag-icon"
-                          />
-                        )}
-                        {country === "US" && (
-                          <img
-                            src="https://flagcdn.com/w40/us.png"
-                            alt="United States Flag"
-                            className="flag-icon"
-                          />
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="row mt-3 mb-3">
-                  <div className="col-md-10">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Enter Asin Code B0D3R1JQ7D"
-                      value={asin}
-                      onChange={(e) => setAsin(e.target.value)}
-                    />
-                  </div>
-                  <div className="col-md-2">
-                    <button
-                      className="btn btn-primary search_icon"
-                      type="submit"
-                      onClick={handleSearch}
-                      disabled={loading}
-                    >
-                      {loading ? (
-                        <CircularProgress size={20} color="inherit" />
-                      ) : (
-                        "Search"
-                      )}
-                    </button>
-                  </div>
-                </div>
-                {error && (
-                  <div className="alert alert-danger mt-3 poppin-regular">
-                    {error}
-                  </div>
-                )}
-
-                {!data && !Object.keys(data).length && !error && (
-                  <div className="alert alert-warning mt-3">
-                    No data available for the entered ASIN code.
-                  </div>
-                )}
-
-                {data && Object.keys(data).length > 0 && (
-                  <div>
-                    <Link
-                      to="/asin-details"
-                      state={{ data, dailySales: dailySales }}
-                      style={{ textDecoration: "none", color: "black" }}
-                    >
-                      <div className="row mt-3" key={data.asin}>
-                        <div className="col-2">
-                          <img
-                            src={data.product_photo}
-                            alt={data.product_title}
-                            style={{ width: "100%", height: "100px" }}
-                          />
-                        </div>
-                        <div
-                          className="col-10 d-flex"
-                          style={{
-                            flexDirection: "column",
-                            justifyContent: "center",
-                          }}
-                        >
-                          <div
-                            className="poppins-regular"
-                            style={{
-                              color: "grey",
-                              display: "-webkit-box",
-                              WebkitLineClamp: 2,
-                              WebkitBoxOrient: "vertical",
-                              overflow: "hidden",
-                            }}
-                          >
-                            {data.product_title}
-                          </div>
-                          <div className="poppins-medium">
-                            {data.country === "US"
-                              ? `$${data.product_price}`
-                              : `Rs. ${data.product_price}`}
-                          </div>
-                        </div>
-                      </div>
-                    </Link>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
-
       <div className="container-fluid d-flex align-items-center web-tools mt-5">
         <div className="row w-100  rounded-4 overflow-hidden bg-white web-tools">
           {/* Left Panel */}
@@ -627,14 +417,14 @@ const Asin = () => {
                   className="poppins-regular"
                   style={{ fontSize: "14px", color: "black" }}
                 >
-                  Search Count: {alluserdata.searchcount}
+                  Remaining Count: {remainingcount}
                 </p>
-                <p
+                {/* <p
                   className="poppins-regular"
                   style={{ fontSize: "14px", color: "black" }}
                 >
                   Search Limit: {alluserdata.searchLimit}
-                </p>
+                </p> */}
               </div>
             )}
 
@@ -925,7 +715,8 @@ const Asin = () => {
                   fontSize: "14px",
                 }}
               >
-                {alluserdata.searchcount}/{alluserdata.searchLimit}
+                {/* {alluserdata.searchcount}/{alluserdata.searchLimit} */}
+                Remaining Count: {remainingcount}
               </p>
 
               <div

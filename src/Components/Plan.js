@@ -1,17 +1,37 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import { Modal, Form } from "react-bootstrap";
 
 const Plan = () => {
   const [plandata, setPlandata] = useState([]);
   const [userData, setUserData] = useState(null);
+
   const [paymentKeys, setPaymentKeys] = useState({
     reazorpaykey_id: "",
     reazorpaykey_secret: "",
   });
   const [orderId, setOrderId] = useState(null);
+  const [selectdata, setselectdata] = useState(null);
+  const [allcoupondata, setallcoupondata] = useState([]);
+  const [searchvalue, setsearchvalue] = useState("");
+  const [discountedPrice, setDiscountedPrice] = useState(selectdata?.price);
+  const [errorMessage, setErrorMessage] = useState(""); // Error message state
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const navigate = useNavigate();
+
+  const handleselectdata = (data) => {
+    setselectdata(data);
+    handleShow();
+  };
+
+  console.log("selectdata", selectdata);
 
   useEffect(() => {
     const userdata = localStorage.getItem("user");
@@ -35,7 +55,7 @@ const Plan = () => {
   const fetchPaymentKeys = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8082/api/paymentkey/getAllreazorpaypayment"
+        "https://api.proleverageadmin.in/api/paymentkey/getAllreazorpaypayment"
       );
       if (response.status === 200) {
         setPaymentKeys({
@@ -53,13 +73,14 @@ const Plan = () => {
   useEffect(() => {
     fetchPaymentKeys();
     getAllPlans();
+    getAllcoupondata();
   }, []);
 
   // Fetch Plans
   const getAllPlans = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8082/api/plans/getallplan"
+        "https://api.proleverageadmin.in/api/plans/getallplan"
       );
       setPlandata(response.data.data);
     } catch (error) {
@@ -67,7 +88,19 @@ const Plan = () => {
     }
   };
 
-  // Load Razorpay Script
+  const getAllcoupondata = async () => {
+    try {
+      const response = await axios.get(
+        "https://api.proleverageadmin.in/api/getAllplanCoupon"
+      );
+      setallcoupondata(response.data.data);
+    } catch (error) {
+      console.error("Error fetching plans:", error);
+    }
+  };
+
+  console.log("allcoupondata", allcoupondata);
+
   const loadRazorpayScript = () => {
     return new Promise((resolve) => {
       const script = document.createElement("script");
@@ -94,8 +127,8 @@ const Plan = () => {
 
     try {
       const orderResponse = await axios.post(
-        "http://localhost:8082/api/payment/orders",
-        { amount: price, userId: "679b03823b746307884d70ba", planId: planId }
+        "https://api.proleverageadmin.in/api/payment/orders",
+        { amount: price, userId: userData?._id, planId: planId }
       );
 
       const options = {
@@ -108,8 +141,8 @@ const Plan = () => {
         handler: async (response) => {
           try {
             const verifyResponse = await axios.get(
-              `http://localhost:8082/api/payment/payment/${response.razorpay_payment_id}`,
-              { params: { userId: "679b03823b746307884d70ba", planId } }
+              `https://api.proleverageadmin.in/api/payment/payment/${response.razorpay_payment_id}`,
+              { params: { userId: userData?._id, planId } }
             );
             if (verifyResponse.status === 200) {
               alert("Payment Successful!");
@@ -136,40 +169,23 @@ const Plan = () => {
     }
   };
 
-  // const handlePhonePePayment = async (planId, price) => {
-  //   try {
-  //     // Ensure user data exists
-  //     if (!userData?._id) {
-  //       alert("User not logged in. Please log in to continue.");
-  //       return;
-  //     }
+  const applyCoupon = () => {
+    const foundCoupon = allcoupondata.find(
+      (coupon) => coupon.couponCode === searchvalue
+    );
 
-  //     // Generate a unique transaction ID
-  //     const transactionId = `TXN_${Date.now()}`;
+    if (foundCoupon) {
+      // Apply discount calculation
+      const discountAmount = (selectdata?.price * foundCoupon.discount) / 100;
+      const finalPrice = selectdata?.price - discountAmount;
 
-  //     // Initiate payment request to backend
-  //     const response = await axios.post(
-  //       "https://api.proleverageadmin.in/api/payment/phonepe",
-  //       {
-  //         transactionId,
-  //         MUID: userData._id,
-  //         name: userData.name,
-  //         amount: price,
-  //         number: userData.phone || "9943740866", // Ensure phone number is available
-  //       }
-  //     );
-
-  //     // Redirect user to PhonePe payment page
-  //     if (response.data.success) {
-  //       window.location.href = response.data.paymentUrl; // Redirects to PhonePe
-  //     } else {
-  //       alert("Payment initiation failed. Try again.");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error initiating PhonePe payment:", error);
-  //     alert("Failed to start payment.");
-  //   }
-  // };
+      setDiscountedPrice(finalPrice.toFixed(2)); // Round to 2 decimal places
+      setErrorMessage(""); // Clear error message
+    } else {
+      setErrorMessage("❌ Invalid Coupon Code"); // Show error
+      setDiscountedPrice(selectdata?.price); // Reset to original price
+    }
+  };
 
   return (
     <div className="pricingSection">
@@ -193,12 +209,99 @@ const Plan = () => {
           </p>
           <button
             className="button poppins-medium"
-            onClick={() => handlePayment1(plan._id, plan.price)}
+            // onClick={() => handlePayment1(plan._id, plan.price)}
+            onClick={() => handleselectdata(plan)}
           >
             Buy Now
           </button>
         </div>
       ))}
+
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+        centered
+      >
+        {/* Header */}
+        <Modal.Header>
+          <Modal.Title className="poppins-medium" style={{ fontSize: "18px" }}>
+            Plan Details
+          </Modal.Title>
+        </Modal.Header>
+
+        {/* Body */}
+        <Modal.Body>
+          <div className="d-flex align-items-center apply-coupon">
+            <Form.Control
+              type="text"
+              placeholder="Enter Coupon Code"
+              className="coupon-input"
+              value={searchvalue}
+              onChange={(e) => setsearchvalue(e.target.value)}
+            />
+            <Button
+              onClick={applyCoupon}
+              variant="outline-primary"
+              className="apply-btn poppins-regular "
+            >
+              Apply
+            </Button>
+          </div>
+          {errorMessage && (
+            <p className="text-danger mt-2 poppins-regular text-center">
+              {errorMessage}
+            </p>
+          )}
+          <div
+            className="poppins-semibold mt-3"
+            style={{ color: "green", fontSize: "16px" }}
+          >
+            Billing Detais
+          </div>
+          <div className="plan-details mt-2">
+            <p className="poppins-regular">
+              <strong>Plan Name:</strong> {selectdata?.planName}
+            </p>
+            <p className="poppins-regular">
+              <strong>Valid Period:</strong> {selectdata?.validPeriod} days
+            </p>
+            <p className="poppins-regular">
+              <strong>Search Count:</strong> {selectdata?.searchCount}
+            </p>
+            <p className="poppins-regular">
+              <strong>Original Price:</strong> ₹{selectdata?.price}
+            </p>
+            <p className="poppins-regular">
+              <strong>Final Price After Discount:</strong> ₹
+              {discountedPrice > 0 ? discountedPrice : selectdata?.price}
+            </p>
+          </div>
+
+          {/* Coupon Input & Apply Button */}
+        </Modal.Body>
+
+        {/* Footer */}
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button
+            variant="primary"
+            className="buy-now-btn"
+            // onClick={() => handlePayment1(selectdata?._id, selectdata?.price)}
+            onClick={() =>
+              handlePayment1(
+                selectdata?._id,
+                discountedPrice > 0 ? discountedPrice : selectdata?.price
+              )
+            }
+          >
+            Buy Now
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

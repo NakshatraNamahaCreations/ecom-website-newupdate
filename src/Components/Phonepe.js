@@ -17,7 +17,10 @@ const Phonepe = () => {
     setLoading2(true);
 
     try {
-      const res = await axios.post("http://localhost:8082/api/payment", data);
+      const res = await axios.post(
+        "https://api.proleverageadmin.in/api/payment",
+        data
+      );
 
       if (res.data.success && res.data.paymentUrl) {
         window.location.href = res.data.paymentUrl;
